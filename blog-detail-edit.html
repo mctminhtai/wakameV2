@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Blog detail</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.tiny.cloud/1/z0qez48sbqyuip9s382cicowvftudtqj0a8wo4sqr4kqbcdb/tinymce/5/tinymce.min.js"
+        referrerpolicy="origin"></script>
+    <script type="text/javascript">
+        tinymce.init({
+            selector: '#myeditablediv',
+            plugins: 'emoticons code codesample table quickbars advlist autosave autolink lists link image imagetools charmap print preview hr anchor pagebreak',
+            menubar: 'file edit view insert table format tools',
+            toolbar: 'undo redo | formatselect | bold italic | image link | alignleft aligncentre alignright alignjustify | indent outdent | numlist bullist | restoredraft',
+            quickbars_insert_toolbar: false,
+            paste_data_images: true,
+            image_title: true,
+            automatic_uploads: false,
+            file_picker_types: 'image',
+            autosave_ask_before_unload: false,
+            inline: true,
+            image_caption: true,
+            file_picker_callback: function (cb, value, meta) {
+                var input = document.createElement('input');
+                input.setAttribute('type', 'file');
+                input.setAttribute('accept', 'image/*');
+
+                /*
+                  Note: In modern browsers input[type="file"] is functional without
+                  even adding it to the DOM, but that might not be the case in some older
+                  or quirky browsers like IE, so you might want to add it to the DOM
+                  just in case, and visually hide it. And do not forget do remove it
+                  once you do not need it anymore.
+                */
+
+                input.onchange = function () {
+                    var file = this.files[0];
+
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        /*
+                          Note: Now we need to register the blob in TinyMCEs image blob
+                          registry. In the next release this part hopefully won't be
+                          necessary, as we are looking to handle it internally.
+                        */
+                        var id = 'blobid' + (new Date()).getTime();
+                        var blobCache = tinymce.activeEditor.editorUpload.blobCache;
+                        var base64 = reader.result.split(',')[1];
+                        var blobInfo = blobCache.create(id, file, base64);
+                        blobCache.add(blobInfo);
+
+                        /* call the callback and populate the Title field with the file name */
+                        cb(blobInfo.blobUri(), { title: file.name });
+                    };
+                    reader.readAsDataURL(file);
+                };
+
+                input.click();
+            },
+            content_style: 'body { font-family:Roboto,Arial,sans-serif; font-size:14px }',
+        });
+    </script>
+    <link rel="shortcut icon" href="img/2.png" type="image/png">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/LineIcons.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/tiny-slider.css">
+    <link rel="stylesheet" href="css/glightbox.min.css">
+    <link rel="stylesheet" href="css/blog-detail-edit-main.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+    <!--[if lte IE 9]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+      </p>
+    <![endif]-->
+
+    <div class="preloader" style="opacity: 0; display: none;">
+        <div class="preloader-inner">
+            <div class="preloader-icon">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+
+    <nav class="navbar navbar-expand-md bg-inverse fixed-top scrolling-navbar">
+        <div class="container">
+            <a href="index.html" class="navbar-brand">WAZA COVER</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="lni-menu"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto w-100 justify-content-end">
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="/index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="/index.html#services">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="/index.html#features">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="/index.html#showcase">Showcase</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="/index.html#pricing">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="/index.html#team">Team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="/index.html#blog">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="/index.html#contact">Contact</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                  <a class="btn btn-singin" href="#">Download</a>
+                </li> -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="breadcrumbs">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="breadcrumbs-content">
+                        <h1 class="page-title">Blog Grid Sidebar</h1>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-12">
+                    <ul class="breadcrumb-nav">
+                        <li><a href="index.html">Home</a></li>
+                        <li>Blog Grid Sidebar</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <section class="section blog-single">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-8 col-md-12 col-12">
+                    <form action="" method="post">
+                        <div class="single-inner">
+                            <div class="post-details">
+                                <div class="main-content-head">
+                                    <div class="meta-information">
+                                        <h2 class="post-title">Bring to the table win-win survival strategies to
+                                            ensure proactive customer service.
+                                        </h2>
+
+                                        <ul class="meta-info">
+                                            <li>
+                                                <a href="javascript:void(0)">By Martin King</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">20 Jun 2023</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">Marketing</a>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                    <div class="post-thumbnils">
+                                        <img src="img/blog/blog-single.png" alt="#">
+                                    </div>
+                                    <div class="detail-inner">
+
+                                        <div id="myeditablediv">Click here to edit!</div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+
+
+
+                </div>
+
+
+                <aside class="col-lg-4 col-md-12 col-12">
+                    <div class="sidebar">
+
+                        <div class="widget search-widget">
+                            <h5 class="widget-title">Search This Site</h5>
+                            <form action="#">
+                                <input type="text" placeholder="Search ...">
+                                <button type="submit"><i class="lni lni-search"></i></button>
+                            </form>
+                        </div>
+
+
+                        <div class="widget popular-feeds">
+                            <h5 class="widget-title">Popular Feeds</h5>
+                            <div class="popular-feed-loop">
+                                <div class="single-popular-feed">
+                                    <div class="feed-desc">
+                                        <a href="javascript:void(0)" class="cetagory">Creative</a>
+                                        <h6 class="post-title"><a href="blog-single-sidebar.html">Bringing Great Design
+                                                Ideas To Completion</a></h6>
+                                        <span class="time"><i class="lni lni-calendar"></i> 05th Nov 2023</span>
+                                    </div>
+                                </div>
+                                <div class="single-popular-feed">
+                                    <div class="feed-desc">
+                                        <a href="javascript:void(0)" class="cetagory">Jobs</a>
+                                        <h6 class="post-title"><a href="blog-single-sidebar.html">Live Life Smart And
+                                                Focus On The Positive</a></h6>
+                                        <span class="time"><i class="lni lni-calendar"></i> 24th March 2023</span>
+                                    </div>
+                                </div>
+                                <div class="single-popular-feed">
+                                    <div class="feed-desc">
+                                        <a href="javascript:void(0)" class="cetagory">Marketing</a>
+                                        <h6 class="post-title"><a href="blog-single-sidebar.html">How did we get 1M+
+                                                visitors in 30 days without anything!</a></h6>
+                                        <span class="time"><i class="lni lni-calendar"></i> 30th Jan 2023</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="widget categories-widget">
+                            <h5 class="widget-title">Categories</h5>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input"
+                                    checked>
+                                <label class="custom-control-label" for="customRadio1">Web Design</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+                                <label class="custom-control-label" for="customRadio2">Branding</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
+                                <label class="custom-control-label" for="customRadio3">Graphic Design</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="customRadio4" name="customRadio" class="custom-control-input">
+                                <label class="custom-control-label" for="customRadio4">Marketing</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="customRadio5" name="customRadio" class="custom-control-input">
+                                <label class="custom-control-label" for="customRadio5">Wireframing</label>
+                            </div>
+                        </div>
+
+
+                        <div class="widget popular-tag-widget">
+                            <h5 class="widget-title">Popular Tags</h5>
+                            <div class="tags">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        Popular
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                                    <label class="form-check-label" for="defaultCheck2">
+                                        Design
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
+                                    <label class="form-check-label" for="defaultCheck3">
+                                        UX
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck4">
+                                    <label class="form-check-label" for="defaultCheck4">
+                                        Usability
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck5">
+                                    <label class="form-check-label" for="defaultCheck5">
+                                        Interview
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck6">
+                                    <label class="form-check-label" for="defaultCheck6">
+                                        Jobs
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck7">
+                                    <label class="form-check-label" for="defaultCheck7">
+                                        Develop
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck8">
+                                    <label class="form-check-label" for="defaultCheck8">
+                                        Business
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck9">
+                                    <label class="form-check-label" for="defaultCheck9">
+                                        Tech
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck10">
+                                    <label class="form-check-label" for="defaultCheck10">
+                                        Consult
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck11">
+                                    <label class="form-check-label" for="defaultCheck11">
+                                        Employee
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <!-- Footer Section Start -->
+    <footer>
+        <!-- Footer Area Start -->
+        <section id="footer-Content">
+            <div class="container">
+                <!-- Start Row -->
+                <div class="row">
+
+                    <!-- Start Col -->
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 col-mb-12">
+
+                        <div class="footer-logo">
+                            WAZA COVER
+                        </div>
+                    </div>
+                    <!-- End Col -->
+                    <!-- Start Col -->
+                    <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-mb-12">
+                        <div class="widget">
+                            <h3 class="block-title">Company</h3>
+                            <ul class="menu">
+                                <li><a href="#"> - About Us</a></li>
+                                <li><a href="#">- Career</a></li>
+                                <li><a href="#">- Blog</a></li>
+                                <li><a href="#">- Press</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End Col -->
+                    <!-- Start Col -->
+                    <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-mb-12">
+                        <div class="widget">
+                            <h3 class="block-title">Product</h3>
+                            <ul class="menu">
+                                <li><a href="#"> - Customer Service</a></li>
+                                <li><a href="#">- Enterprise</a></li>
+                                <li><a href="#">- Price</a></li>
+                                <li><a href="#">- Scurity</a></li>
+                                <li><a href="#">- Why SLICK?</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End Col -->
+                    <!-- Start Col -->
+                    <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 col-mb-12">
+                        <div class="widget">
+                            <h3 class="block-title">Download App</h3>
+                            <ul class="menu">
+                                <li><a href="#"> - Android App</a></li>
+                                <li><a href="#">- IOS App</a></li>
+                                <li><a href="#">- Windows App</a></li>
+                                <li><a href="#">- Play Store</a></li>
+                                <li><a href="#">- IOS Store</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End Col -->
+                    <!-- Start Col -->
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 col-mb-12">
+                        <div class="widget">
+                            <h3 class="block-title">Subscribe Now</h3>
+                            <p>Appropriately implement calysts for change visa wireless catalysts for change. </p>
+                            <div class="subscribe-area">
+                                <input type="email" class="form-control" placeholder="Enter Email">
+                                <span><i class="lni-chevron-right"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Col -->
+                </div>
+                <!-- End Row -->
+            </div>
+            <!-- Copyright Start  -->
+
+            <div class="copyright">
+                <div class="container">
+                    <!-- Star Row -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="site-info text-center">
+                                <p>Crafted by <a href="http://uideck.com" rel="nofollow">UIdeck</a></p>
+                            </div>
+
+                        </div>
+                        <!-- End Col -->
+                    </div>
+                    <!-- End Row -->
+                </div>
+            </div>
+            <!-- Copyright End -->
+        </section>
+        <!-- Footer area End -->
+
+    </footer>
+    <!-- Footer Section End -->
+
+
+    <a href="#" class="scroll-top" style="display: none;">
+        <i class="lni lni-chevron-up"></i>
+    </a>
+
+    <script src="js/wow.min.js"></script>
+    <script src="js/tiny-slider.js"></script>
+    <script src="js/glightbox.min.js"></script>
+    <script src="js/count-up.min.js"></script>
+    <script src="js/jquery-min.js"></script>
+    <script src="js/owl.carousel.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
