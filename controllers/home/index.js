@@ -1,3 +1,9 @@
 exports.index = function (req, res, next) {
+	// const newUser = new UserModel({
+	// 	email: 'ifjdsiof',
+	// 	password: 'fjidjfijsd',
+	// 	fullName: 'fdsfdsfwe',
+	// });
+	// newUser.save();
 	res.render('index');
 };

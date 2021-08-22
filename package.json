@@ -7,11 +7,19 @@
 		"dev": "nodemon ./bin/www -e ejs,js,css,html"
 	},
 	"dependencies": {
+		"bcryptjs": "^2.4.3",
 		"cookie-parser": "~1.4.4",
 		"debug": "~2.6.9",
+		"dotenv": "^10.0.0",
 		"ejs": "~2.6.1",
 		"express": "~4.16.1",
+		"express-session": "^1.17.2",
 		"http-errors": "~1.6.3",
-		"morgan": "~1.9.1"
+		"mongoose": "^5.13.7",
+		"morgan": "~1.9.1",
+		"nodemailer": "^6.6.3",
+		"passport": "^0.4.1",
+		"passport-local": "^1.0.0",
+		"validator": "^13.6.0"
 	}
 }
