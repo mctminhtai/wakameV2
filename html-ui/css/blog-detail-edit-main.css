@@ -1792,16 +1792,23 @@ ol {
 	width: 100%;
 }
 
-.blog-single .post-title {
+.blog-single .post-title-input {
 	margin-bottom: 10px;
 	line-height: 40px;
-	display: inline-block;
 	font-weight: 600;
+	font-size: 40px;
 	display: inline-block;
+	border: none;
+	color: #151515;
+	width: 100%;
+	font-family: 'Poppins', sans-serif;
+	scrollbar-width: none;
 }
-
+.blog-single .post-title-input::-webkit-scrollbar {
+	display: none;
+}
 @media (max-width: 767px) {
-	.blog-single .post-title {
+	.blog-single .post-title-input {
 		line-height: 32px;
 		font-size: 22px;
 	}
@@ -2514,5 +2521,4 @@ blockquote span {
 	border: 2px solid #3080e3;
 	box-shadow: 0 0 0 4px rgba(48, 128, 227, 0.25);
 	border-radius: 8px;
-	min-height: 500px;
 }
