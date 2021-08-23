@@ -20,6 +20,7 @@
 		"nodemailer": "^6.6.3",
 		"passport": "^0.4.1",
 		"passport-local": "^1.0.0",
+		"randostrings": "^0.1.6",
 		"validator": "^13.6.0"
 	}
 }

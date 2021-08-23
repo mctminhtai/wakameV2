@@ -48,7 +48,7 @@
    Sticky Nav
    ========================================================================== */
 	$(window).on('scroll', function () {
-		if ($(window).scrollTop() > 100) {
+		if ($(window).scrollTop() > 50) {
 			$('nav').addClass('menu-bg');
 		} else {
 			$('nav').removeClass('menu-bg');

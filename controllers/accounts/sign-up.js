@@ -3,6 +3,10 @@ var bcrypt = require('bcryptjs');
 var passport = require('passport'),
 	LocalStrategy = require('passport-local').Strategy;
 var validator = require('validator');
+var { sendMail } = require('../../utils/mailer');
+var { verifyAccountTemplate } = require('../../constants/email-template');
+const randostring = require('randostrings/server');
+const randomString = new randostring();
 
 passport.use(
 	'local.signup',
@@ -34,7 +38,6 @@ passport.use(
 						fullName: req.body.fullName,
 					});
 					newUser.save().then((user) => {
-						console.log(user);
 						return done(null, user);
 					});
 				});
@@ -42,6 +45,15 @@ passport.use(
 		}
 	)
 );
+passport.serializeUser(function (user, done) {
+	done(null, user._id);
+});
+
+passport.deserializeUser(function (id, done) {
+	Users.findById(id, function (err, user) {
+		done(err, user);
+	});
+});
 exports.getSignUp = function (req, res, next) {
 	res.render('sign-up', { message: '' });
 };
@@ -53,7 +65,18 @@ exports.postSignUp = function (req, res, next) {
 		if (!user) {
 			return res.render('sign-up', { message: 'already exist account, please sign in' });
 		}
-		return res.redirect('/accounts/sign-in');
+		var randToken = randomString.password({
+			length: 100,
+			string: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
+		});
+		req.session.verifyInfo = {
+			id: user._id,
+			token: randToken,
+			exprires: Date.now() + 60000,
+		};
+		var verifyUrl = req.headers.origin + '/accounts/' + 'verify/' + randToken;
+		sendMail(user.email, 'Please verify your account', verifyAccountTemplate(verifyUrl));
+		return res.render('sign-up', { message: 'Please verify your account' });
 	})(req, res, next);
 };
 exports.validateSignUpForm = function (req, res, next) {
@@ -79,7 +102,6 @@ exports.validateSignUpForm = function (req, res, next) {
 		}),
 	];
 	var isValid = true;
-	console.log(result);
 	result.forEach((value, index) => {
 		if (value === false) {
 			return (isValid = false);
@@ -89,4 +111,27 @@ exports.validateSignUpForm = function (req, res, next) {
 		return next();
 	}
 	return res.render('sign-up', { message: 'Please check your input form' });
+};
+exports.verifyAccount = function (req, res, next) {
+	if (!req.params.token) {
+		return res.redirect('/');
+	}
+	if (!req.session.verifyInfo) {
+		return res.render('notify', { title: 'OOPS', message: 'Please check your email again', url: '/' });
+	}
+	if (Date.now() > req.session.verifyInfo.exprires) {
+		return res.render('notify', { title: 'OOPS', message: 'time out for activate', url: '/' });
+	}
+	if (req.session.verifyInfo.token === req.params.token) {
+		Users.findByIdAndUpdate(req.session.verifyInfo.id, { status: true }, { new: true }, (err, doc) => {
+			if (err) {
+				throw err;
+			}
+			return res.render('notify', {
+				title: 'Congratulations!',
+				message: 'Your account is activated',
+				url: '/accounts/sign-in',
+			});
+		});
+	}
 };

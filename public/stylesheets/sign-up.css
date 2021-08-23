@@ -920,8 +920,8 @@ ol {
 /* Bread Crumbs */
 .breadcrumbs {
 	position: relative;
-	padding-top: 140px;
-	padding-bottom: 50px;
+	padding-top: 90px;
+	padding-bottom: 24px;
 	z-index: 2;
 	text-align: left;
 	background: linear-gradient(-45deg, #fd723b, #3080e3);
@@ -1043,8 +1043,8 @@ ol {
 }
 
 .section {
-	padding-top: 110px;
-	padding-bottom: 110px;
+	padding-top: 74px;
+	padding-bottom: 74px;
 	position: relative;
 }
 

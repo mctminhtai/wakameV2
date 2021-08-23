@@ -5,5 +5,6 @@ exports.index = function (req, res, next) {
 	// 	fullName: 'fdsfdsfwe',
 	// });
 	// newUser.save();
+	console.log(Date.now());
 	res.render('index');
 };
