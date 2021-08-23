@@ -1,3 +1,6 @@
-exports.blogEditIndex = function (req, res, next) {
-	res.render('blog-edit');
+var { getAddBlog, postAddBlog } = require('./add-blog');
+
+module.exports = {
+	getAddBlog,
+	postAddBlog,
 };

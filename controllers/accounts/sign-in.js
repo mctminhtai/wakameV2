@@ -151,7 +151,7 @@ exports.postChangePwd = function (req, res, next) {
 				}
 				return res.render('notify', {
 					title: 'Congratulations!',
-					message: 'Your has been reset',
+					message: 'Your password has been reset',
 					url: '/accounts/sign-in',
 				});
 			});

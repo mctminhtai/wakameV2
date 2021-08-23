@@ -2177,61 +2177,40 @@ blockquote span {
 	color: #fff;
 }
 
-.sidebar .widget.search-widget form {
+.sidebar .widget.description-widget form {
 	position: relative;
 }
 
-.sidebar .widget.search-widget form input {
+.sidebar .widget.description-widget textarea {
 	width: 100%;
 	background-color: transparent;
-	height: 55px;
 	border: none;
-	padding: 0 70px 0 30px;
+	padding: 30px;
 	font-size: 15px;
 	font-weight: 400;
 	border-radius: 30px;
 	background-color: #fff;
+	font-family: 'Poppins',sans-serif;
+
 }
 
-.sidebar .widget.search-widget form input::-webkit-input-placeholder {
+.sidebar .widget.description-widget textarea::-webkit-input-placeholder {
 	color: #333;
 }
 
-.sidebar .widget.search-widget form input:-ms-input-placeholder {
+.sidebar .widget.description-widget textarea:-ms-input-placeholder {
 	color: #333;
 }
 
-.sidebar .widget.search-widget form input::-ms-input-placeholder {
+.sidebar .widget.description-widget textarea::-ms-input-placeholder {
 	color: #333;
 }
 
-.sidebar .widget.search-widget form input::placeholder {
+.sidebar .widget.description-widget textarea::placeholder {
 	color: #333;
 }
 
-.sidebar .widget.search-widget form button {
-	border: none;
-	position: absolute;
-	right: 7px;
-	top: 6px;
-	width: 42px;
-	height: 42px;
-	z-index: 1;
-	color: #fff !important;
-	font-size: 15px;
-	-webkit-transition: all 0.3s ease-out 0s;
-	transition: all 0.3s ease-out 0s;
-	color: #fff;
-	border-radius: 50%;
-	padding: 0 !important;
-	border: none;
-	background: #3080e3;
-}
 
-.sidebar .widget.search-widget form button:hover {
-	background-color: #fd723b;
-	color: #fff;
-}
 
 .sidebar .widget.popular-feeds .single-popular-feed {
 	display: -webkit-box;
@@ -2513,10 +2492,10 @@ blockquote span {
 	-o-transition: all 300ms;
 	transition: all 300ms;
 }
-#myeditablediv {
+#blogBody {
 	padding-top: 5px;
 }
-#myeditablediv:focus-visible {
+#blogBody:focus-visible {
 	outline: none;
 	border: 2px solid #3080e3;
 	box-shadow: 0 0 0 4px rgba(48, 128, 227, 0.25);

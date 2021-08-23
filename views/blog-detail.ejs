@@ -39,7 +39,7 @@
 
     <nav class="navbar navbar-expand-md bg-inverse fixed-top scrolling-navbar">
         <div class="container">
-            <a href="index.html" class="navbar-brand">WAZA COVER</a>
+            <a href="/" class="navbar-brand">WAZA COVER</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="lni-menu"></i>
@@ -47,28 +47,28 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto w-100 justify-content-end">
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="/index.html">Home</a>
+                        <a class="nav-link page-scroll" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="/index.html#services">About</a>
+                        <a class="nav-link page-scroll" href="/#services">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="/index.html#features">Services</a>
+                        <a class="nav-link page-scroll" href="/#features">Services</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="/index.html#showcase">Showcase</a>
+                        <a class="nav-link page-scroll" href="/#showcase">Showcase</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="/index.html#pricing">Pricing</a>
+                        <a class="nav-link page-scroll" href="/#pricing">Pricing</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="/index.html#team">Team</a>
+                        <a class="nav-link page-scroll" href="/#team">Team</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="/index.html#blog">Blog</a>
+                        <a class="nav-link page-scroll" href="/#blog">Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="/index.html#contact">Contact</a>
+                        <a class="nav-link page-scroll" href="/#contact">Contact</a>
                     </li>
                     <!-- <li class="nav-item">
                   <a class="btn btn-singin" href="#">Download</a>
@@ -89,7 +89,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">
                     <ul class="breadcrumb-nav">
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="/">Home</a></li>
                         <li>Blog Grid Sidebar</li>
                     </ul>
                 </div>
@@ -106,19 +106,18 @@
                         <div class="post-details">
                             <div class="main-content-head">
                                 <div class="meta-information">
-                                    <h2 class="post-title">Bring to the table win-win survival strategies to
-                                        ensure proactive customer service.
+                                    <h2 class="post-title"> <%= blog.title %>
                                     </h2>
 
                                     <ul class="meta-info">
                                         <li>
-                                            <a href="javascript:void(0)">By Martin King</a>
+                                            <a href="javascript:void(0)"><%= blog.userId.fullName %></a>
                                         </li>
                                         <li>
                                             <a href="javascript:void(0)">20 Jun 2023</a>
                                         </li>
                                         <li>
-                                            <a href="javascript:void(0)">Marketing</a>
+                                            <a href="javascript:void(0)"><%= blog.category.name %></a>
                                         </li>
                                     </ul>
 
@@ -127,58 +126,7 @@
                                     <img src="images/blog/blog-single.png" alt="#">
                                 </div>
                                 <div class="detail-inner">
-                                    <p>With over 25,000 customers worldwide, Appex is the world leading analytics and
-                                        marketing suite for Instagram and a partner of the world's most-loved brands
-                                        such as National Geographic, Gucci, Marc Jacobs, Samsung, Emirates and more.</p>
-                                    <p>As a Customer Support Specialist, we expect you to be up-to-date with the latest
-                                        digital technologies and social media trends. You should have excellent
-                                        communication skills and be able to assist our customers in a fast, efficient
-                                        and professional manner. If you enjoy fixing issues and helping improve the
-                                        overall customer experience, this job is for you!</p>
-                                    <h3>Summary of Completed Research
-                                    </h3>
-                                    <p>Leverage agile frameworks to provide a robust synopsis for high level overviews.
-                                        Iterative approaches to corporate strategy foster collaborative thinking to
-                                        further the overall value proposition. Organically grow the holistic world view
-                                        of disruptive innovation via workplace diversity and empowerment.
-                                    </p>
-                                    <p>Bring to the table win-win survival strategies to ensure proactive domination. At
-                                        the end of the day, going forward, a new normal that has evolved from generation
-                                        X is on the runway
-                                    </p>
-                                    <p>Heading towards a streamlined cloud solution. User generated content in real-time
-                                        will have multiple touchpoints for offshoring Capitalize on low hanging fruit to
-                                        identify a ballpark value added activity to beta test. Override the digital
-                                        divide with additional
-                                    </p>
-                                    <h3>Security and Reliability
-                                    </h3>
-                                    <p>Capitalize on low hanging fruit to identify a ballpark value added activity to
-                                        beta test. Override the digital divide with additional clickthroughs from
-                                        DevOps. Nanotechnology immersion along the information highway will close the
-                                        loop on focusing solely on the bottom line.
-                                    </p>
-                                    <blockquote>
-                                        <div class="icon">
-                                            <i class="lni lni-quotation"></i>
-                                        </div>
-                                        <h4>"Don't demand that things happen as you wish, but wish that they happen as
-                                            they
-                                            do
-                                            happen, and you will go on well."</h4>
-                                        <span>- Epictetus, The Enchiridion</span>
-                                    </blockquote>
-                                    <h3>Setting the mood with incense</h3>
-                                    <p>Bring to the table win-win survival strategies to ensure proactive domination. At
-                                        the end of the day, going forward, a new normal that has evolved from generation
-                                        X is on the runway heading towards a streamlined cloud solution. User generated
-                                        content in real-time</p>
-                                    <p>Podcasting operational change management inside of workflows to establish a
-                                        framework. Taking seamless key performance indicators offline to maximise the
-                                        long tail. Keeping your eye on the ball while performing a deep dive on the
-                                        start-up mentality to derive convergence on cross-platform integration.</p>
-                                    <p>Completely synergize resource taxing relationships via premier niche markets.
-                                        Professionally cultivate one-to-one customer service with robust ideas.</p>
+                                    <%- blog.body %>
                                 </div>
                             </div>
                         </div>
