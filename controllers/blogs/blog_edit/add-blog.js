@@ -21,7 +21,7 @@ exports.postAddBlog = async function (req, res, next) {
 		tags,
 	});
 	console.log(blog);
-	return res.send('OK');
+	return res.redirect(`/blog/blog-detail/${blog._id}`);
 };
 // await Categories.create([
 // 	{ name: 'Web Design', description: 'thiet ke web' },
