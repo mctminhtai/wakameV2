@@ -2,29 +2,32 @@ tinymce.init({
 	selector: '#blogBody',
 	automatic_uploads: true,
 	images_upload_url: '/upload/photo',
-	// images_upload_base_path: '/some/basepath',
-    // images_upload_handler:image_upload_handler,
+	// images_upload_base_path: window.location.hostname,
+	// images_upload_handler:image_upload_handler,
 
 	plugins:
 		'emoticons code codesample table quickbars advlist autosave autolink lists link image imagetools charmap print preview hr anchor pagebreak',
 	menubar: 'file edit view insert table format tools',
 	toolbar:
-		'undo redo | formatselect | bold italic | image link | alignleft aligncentre alignright alignjustify | indent outdent | numlist bullist | restoredraft',
+		'undo redo | formatselect | bold italic | image link | alignleft aligncenter alignright alignjustify | indent outdent | numlist bullist | restoredraft',
 	image_dimensions: false,
 	quickbars_insert_toolbar: false,
 	paste_data_images: true,
 	image_title: true,
-	automatic_uploads: false,
+	automatic_uploads: true,
 	file_picker_types: 'image',
 	autosave_ask_before_unload: false,
 	inline: true,
 	image_caption: true,
-	file_picker_callback: function (cb, value, meta) {
-		var input = document.createElement('input');
-		input.setAttribute('type', 'file');
-		input.setAttribute('accept', 'image/*');
+	file_picker_callback: file_picker_callback,
+	content_style: 'body { font-family:Roboto,Arial,sans-serif; font-size:15px }',
+});
+function file_picker_callback(cb, value, meta) {
+	var input = document.createElement('input');
+	input.setAttribute('type', 'file');
+	input.setAttribute('accept', 'image/*');
 
-		/*
+	/*
                   Note: In modern browsers input[type="file"] is functional without
                   even adding it to the DOM, but that might not be the case in some older
                   or quirky browsers like IE, so you might want to add it to the DOM
@@ -32,32 +35,30 @@ tinymce.init({
                   once you do not need it anymore.
                 */
 
-		input.onchange = function () {
-			var file = this.files[0];
+	input.onchange = function () {
+		var file = this.files[0];
 
-			var reader = new FileReader();
-			reader.onload = function () {
-				/*
+		var reader = new FileReader();
+		reader.onload = function () {
+			/*
                           Note: Now we need to register the blob in TinyMCEs image blob
                           registry. In the next release this part hopefully won't be
                           necessary, as we are looking to handle it internally.
                         */
-				var id = 'blobid' + new Date().getTime();
-				var blobCache = tinymce.activeEditor.editorUpload.blobCache;
-				var base64 = reader.result.split(',')[1];
-				var blobInfo = blobCache.create(id, file, base64);
-				blobCache.add(blobInfo);
+			var id = 'blobid' + new Date().getTime();
+			var blobCache = tinymce.activeEditor.editorUpload.blobCache;
+			var base64 = reader.result.split(',')[1];
+			var blobInfo = blobCache.create(id, file, base64);
+			blobCache.add(blobInfo);
 
-				/* call the callback and populate the Title field with the file name */
-				cb(blobInfo.blobUri(), { title: file.name });
-			};
-			reader.readAsDataURL(file);
+			/* call the callback and populate the Title field with the file name */
+			cb(blobInfo.blobUri(), { title: file.name });
 		};
+		reader.readAsDataURL(file);
+	};
 
-		input.click();
-	},
-	content_style: 'body { font-family:Roboto,Arial,sans-serif; font-size:15px }',
-});
+	input.click();
+}
 // function image_upload_handler(blobInfo, success, failure, progress) {
 // 	var xhr, formData;
 

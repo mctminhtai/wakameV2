@@ -6,6 +6,7 @@ var logger = require('morgan');
 var passport = require('passport');
 var session = require('express-session');
 const mongoose = require('mongoose');
+const connection = require('./models/dbConfig').connection;
 
 require('dotenv').config();
 
@@ -57,16 +58,17 @@ app.use(function (err, req, res) {
 	res.status(err.status || 500);
 	res.render('error');
 });
-mongoose.connect(process.env.CONNECTION_URL, {
-	useNewUrlParser: true,
-	useUnifiedTopology: true,
-	useFindAndModify: false,
-	useCreateIndex: true,
-});
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function () {
-	// we're connected!
-	console.log('we are connected!');
-});
+connection();
+// mongoose.connect(process.env.CONNECTION_URL, {
+// 	useNewUrlParser: true,
+// 	useUnifiedTopology: true,
+// 	useFindAndModify: false,
+// 	useCreateIndex: true,
+// });
+// const db = mongoose.connection;
+// db.on('error', console.error.bind(console, 'connection error:'));
+// db.once('open', function () {
+// 	// we're connected!
+// 	console.log('we are connected!');
+// });
 module.exports = app;

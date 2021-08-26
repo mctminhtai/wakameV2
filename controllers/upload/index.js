@@ -1,13 +1,10 @@
-const { handleMultipleFiles } = require('./handleMultipleFiles');
-const { handleSingleFile } = require('./handleSingleFile');
+const { handleMultipleImages } = require('./handleMultipleImages');
 const { upload } = require('./multerDefine');
 const { HandleImage } = require('./handleImage');
-const {responsePhoto,responsePhotos} = require('./responseFile');
+const {responsePhoto} = require('./responseFile');
 module.exports = {
-	handleSingleFile,
-	handleMultipleFiles,
+	handleMultipleImages,
 	upload,
     HandleImage,
     responsePhoto,
-    responsePhotos
 };

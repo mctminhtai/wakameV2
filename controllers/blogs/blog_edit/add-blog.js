@@ -20,7 +20,7 @@ exports.postAddBlog = async function (req, res, next) {
 		category,
 		tags,
 	});
-	console.log(blog);
+	// console.log(blog);
 	return res.redirect(`/blog/blog-detail/${blog._id}`);
 };
 // await Categories.create([

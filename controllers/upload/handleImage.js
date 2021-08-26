@@ -1,20 +1,23 @@
 var { Images } = require('../../models/index');
 const fs = require('fs');
 exports.HandleImage = async function (req, res, next) {
-	var img = fs.readFileSync(req.file.path, 'base64');
+	const file = req.file;
+	if (!file) {
+		const error = new Error('Please choose files');
+		error.httpStatusCode = 400;
+		return next(error);
+	}
+
+	var img = fs.readFileSync(file.path, 'base64');
 	var imgBuffer = Buffer.from(img, 'base64');
-	var finalImg = new Images({
-		contentType: req.file.mimetype,
+	let uploadImg = new Images({
+		contentType: file.mimetype,
 		image: imgBuffer,
 	});
-    var savedImg = await finalImg.save();
-    fs.unlink(req.file.path, function (err) {
+	fs.unlink(file.path, function (err) {
 		if (err) console.error(err);
 	});
-	// res.writeHead(200, {
-	// 	'Content-Type': req.file.mimetype,
-	// });
-	// res.end(imgBuffer);
-    // res.redirect(`/upload/photo/${savedImg._id}`);
-    res.status(200).json({ location: `${req.headers.origin}/upload/photo/${savedImg._id}` });
+	let newImgList = await uploadImg.save();
+	let responseImg = { location: `/upload/photo/${newImgList._id}` };
+	res.status(201).json(responseImg);
 };
