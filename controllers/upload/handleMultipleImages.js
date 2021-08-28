@@ -8,13 +8,11 @@ exports.handleMultipleImages = async function (req, res, next) {
 		return next(error);
 	}
 	console.log(files);
-
 	let imgList = files.map((file,index)=>{
 		var img = fs.readFileSync(file.path, 'base64');
-		var imgBuffer = Buffer.from(img, 'base64');
 		let uploadImg = new Images({
 			contentType: file.mimetype,
-			image: imgBuffer,
+			image: img,
 		});
 		fs.unlink(file.path, function (err) {
 			if (err) console.error(err);
@@ -25,5 +23,6 @@ exports.handleMultipleImages = async function (req, res, next) {
 	let responseList = newImgList.map((img, index)=>{
 		return {location:`/upload/photo/${img._id}`}
 	});
-	res.status(201).json(responseList[0]);
+
+	res.status(201).json(responseList);
 };

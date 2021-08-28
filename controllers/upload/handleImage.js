@@ -9,10 +9,9 @@ exports.HandleImage = async function (req, res, next) {
 	}
 
 	var img = fs.readFileSync(file.path, 'base64');
-	var imgBuffer = Buffer.from(img, 'base64');
 	let uploadImg = new Images({
 		contentType: file.mimetype,
-		image: imgBuffer,
+		image: img,
 	});
 	fs.unlink(file.path, function (err) {
 		if (err) console.error(err);

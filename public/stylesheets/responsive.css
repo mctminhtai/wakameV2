@@ -134,6 +134,12 @@
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
+	.hero-area .navbar .navbar-brand {
+		font-size: 30px;
+	}
+	.hero-area .video-content {
+		padding: 65px 0 0;
+	}
 	.hero-area .contents h2 {
 		color: #fff;
 		font-size: 40px !important;
@@ -217,15 +223,19 @@
 }
 
 @media only screen and (max-width: 767px) {
-	.bg-inverse {
-		background: #191c1e;
+	.hero-area .contents {
+		padding: 125px 0;
+	}
+	.hero-area .video-content {
+		padding: 35px 0;
 	}
 	.navbar-expand-md .navbar-brand,
 	.navbar-expand-md .navbar-toggler {
 		margin: 6px 15px;
 	}
 	.bg-inverse {
-		background: #191c1e;
+		background: #5533ff;
+		background: linear-gradient(95deg, #5533ff 40%, #25ddf5 100%) !important;
 	}
 	.navbar {
 		padding: 0;
@@ -262,7 +272,7 @@
 		margin-bottom: 10px;
 	}
 	.hero-area .contents {
-		padding: 200px 0 50px;
+		padding: 100px 0 0px;
 	}
 	.hero-area .contents p {
 		color: #fff;
@@ -318,9 +328,16 @@
 	}
 	#features .feature-item {
 		padding: 10px;
+		display: flex;
+	}
+	#features .feature-item h4 {
+		margin-bottom: 5px;
 	}
 	#features .feature-item .feature-icon {
 		margin-bottom: 20px;
+	}
+	#features .feature-item .feature-info {
+		flex: 1;
 	}
 	#features .feature-item p {
 		font-size: 15px;
@@ -590,7 +607,7 @@
 		font-size: 29px;
 	}
 	#showcase {
-		padding-bottom: 280px;
+		padding-bottom: 180px;
 	}
 	#pricing .pricing-table h1 span {
 		left: 10%;

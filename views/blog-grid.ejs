@@ -71,9 +71,9 @@
                     <li class="nav-item">
                         <a class="nav-link page-scroll" href="/#contact">Contact</a>
                     </li>
-                    <!-- <li class="nav-item">
-                  <a class="btn btn-singin" href="#">Download</a>
-                </li> -->
+                    <li class="nav-item">
+                        <a class="btn btn-singin" href="/accounts/sign-in">login</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -104,7 +104,7 @@
             <div class="row">
                 <div class="col-lg-8 col-md-12 col-12">
                     <div class="row">
-                       
+
                         <% blogs.forEach((value,index)=>{ %>
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="single-blog-grid">
@@ -114,17 +114,24 @@
                                         </a>
                                     </div>
                                     <div class="blog-content">
-                                        <a class="category" href="javascript:void(0)"><%= value.category.name %></a>
+                                        <a class="category" href="javascript:void(0)">
+                                            <%= value.category.name %>
+                                        </a>
                                         <h4>
-                                            <a href="blog/blog-detail/<%= value._id %>"><%= value.title.substring(0, 80)+"..." %></a>
+                                            <a href="blog/blog-detail/<%= value._id %>">
+                                                <%= value.title.substring(0, 80)+"..." %>
+                                            </a>
                                         </h4>
-                                        <p><%= value.description.substring(0, 100)+"..." %></p>
-                                        <a href="blog/blog-detail/<%= value._id %>" class="more-btn">Read Blog <i class="lni lni-arrow-right"></i></a>
+                                        <p>
+                                            <%= value.description.substring(0, 100)+"..." %>
+                                        </p>
+                                        <a href="blog/blog-detail/<%= value._id %>" class="more-btn">Read Blog <i
+                                                class="lni lni-arrow-right"></i></a>
                                     </div>
                                 </div>
-                            
+
                             </div>
-                        <% }) %>
+                            <% }) %>
                     </div>
 
                     <div class="pagination left">

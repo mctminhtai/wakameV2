@@ -11,7 +11,7 @@ var {
 router.get('/', (req, res, next) => {
 	res.render('uploadFile');
 });
-router.post('/multiplePhoto',upload.array('file', 12), handleMultipleImages);
+router.post('/multiplePhoto',upload.array('files', 32), handleMultipleImages);
 router.post('/photo', upload.single('file'), HandleImage);
 router.get('/photo/:id', responsePhoto);
 

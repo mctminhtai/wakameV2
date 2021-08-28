@@ -53,7 +53,36 @@ p {
 	margin: 0;
 	padding: 0;
 }
-
+.btn {
+	font-size: 14px;
+	padding: 10px 30px;
+	border-radius: 4px;
+	font-family: 'Rubik', sans-serif;
+	letter-spacing: 1px;
+	font-weight: 500;
+	color: #fff;
+	border: none;
+	text-transform: uppercase;
+	-webkit-transition: all 0.3s ease-out 0s;
+	-moz-transition: all 0.3s ease-out 0s;
+	-o-transition: all 0.3s ease-out 0s;
+	transition: all 0.3s ease-out 0s;
+	display: inline-block;
+}
+.btn-singin {
+	background: #3080e3;
+	color: #fff;
+	padding: 10px 23px;
+	margin-left: 30px;
+	box-shadow: 0px 8px 9px 0px rgba(96, 94, 94, 0.17);
+}
+.btn-singin:hover,
+.btn-singin:active,
+.btn-singin:focus {
+	color: #fff;
+	background-color: #fd723b;
+	box-shadow: 0px 0px 0px 0px rgba(96, 94, 94, 0.17);
+}
 .navbar-toggler:focus,
 a:focus,
 input:focus,
