@@ -62,3 +62,6 @@ typings/
 
 # package-lock.json disable
 **/package-lock.json
+
+# Google Drive Cred
+GGDriveServiceAccountToken.json
