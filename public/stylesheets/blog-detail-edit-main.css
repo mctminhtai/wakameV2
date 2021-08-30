@@ -700,7 +700,7 @@ blockquote span {
 	margin-right: 4px;
 }
 
-.sidebar .widget.categories-widget .custom-radio {
+.sidebar .widget.categories-widget .form-check {
 	font-size: 15px;
 	padding: 10px 23px;
 	font-weight: 400;
@@ -708,11 +708,11 @@ blockquote span {
 	color: #e0e0e0;
 	transition: all 0.4s ease;
 }
-.sidebar .widget.categories-widget .custom-radio:hover {
+.sidebar .widget.categories-widget .form-check:hover {
 	color: #fff;
 	padding-left: 30px;
 }
-.sidebar .widget.categories-widget .custom-radio label {
+.sidebar .widget.categories-widget .form-check label {
 	padding-left: 18px;
 }
 .sidebar .widget.popular-tag-widget {

@@ -10,8 +10,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon.svg">
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/b26427a686.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="stylesheets/bootstrap.min.css"> -->
     <link rel="stylesheet" href="stylesheets/animate.css">
     <link rel="stylesheet" href="stylesheets/tiny-slider.css">
     <link rel="stylesheet" href="stylesheets/glightbox.min.css">
@@ -45,7 +47,7 @@
                     <div class="nav-inner">
 
                         <nav class="navbar navbar-expand-lg">
-                            <a class="navbar-brand" href="index.html">
+                            <a class="navbar-brand" href="/">
                                 <img src="images/logo/logo.svg" alt="Logo">
                             </a>
                             <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse"
@@ -57,12 +59,12 @@
                             </button>
                             <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                                 <ul id="nav" class="navbar-nav ms-auto">
-                                    <li class="nav-item">
-                                        <a class="dd-menu active collapsed" href="index.html" data-bs-toggle="collapse"
+                                    <!-- <li class="nav-item">
+                                        <a class="dd-menu active collapsed" href="/" data-bs-toggle="collapse"
                                             data-bs-target="#submenu-1-1" aria-controls="navbarSupportedContent"
                                             aria-expanded="false" aria-label="Toggle navigation">Home</a>
                                         <ul class="sub-menu collapse" id="submenu-1-1">
-                                            <li class="nav-item active"><a href="index.html">Saas Homepage</a></li>
+                                            <li class="nav-item active"><a href="/">Saas Homepage</a></li>
                                             <li class="nav-item"><a href="index2.html">Startup Homepage</a></li>
                                         </ul>
                                     </li>
@@ -96,12 +98,18 @@
                                     </li>
                                     <li class="nav-item">
                                         <a href="contact.html" aria-label="Toggle navigation">Contact</a>
+                                    </li> -->
+                                    <li class="nav-item">
+                                        <a href="/" aria-label="Toggle navigation">Home</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/blog" aria-label="Toggle navigation">Blog</a>
                                     </li>
                                 </ul>
                             </div>
                             <div class="button">
-                                <a href="signin.html" class="signin">Sign In</a>
-                                <a href="signup.html" class="signup">Sign Up</a>
+                                <a href="/accounts/sign-in" class="signin">Sign In</a>
+                                <a href="/accounts/sign-up" class="signup">Sign Up</a>
                             </div>
                         </nav>
 
@@ -125,7 +133,7 @@
 
                             <div class="single-footer f-about">
                                 <div class="logo">
-                                    <a href="index.html">
+                                    <a href="/">
                                         <img src="images/logo/logo.svg" alt="#">
                                     </a>
                                 </div>

@@ -16,7 +16,7 @@ exports.postAddBlog = async function (req, res, next) {
 		title,
 		description,
 		body: blogBody,
-		userId: '612350cd281b585374215bf3',
+		userId: '612cfc4e05583a4abc32dc6d',
 		category,
 		tags,
 	});
