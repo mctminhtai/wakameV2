@@ -184,39 +184,25 @@
                     <div class="widget categories-widget">
                         <h5 class="widget-title">Categories</h5>
                         <ul class="custom">
-                            <li>
-                                <a href="javascript:void(0)">Web Design</a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)">Branding</a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)">Graphic Design</a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)">Marketing</a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)">Wireframing</a>
-                            </li>
+                            <% categories.forEach((value,index)=>{ %>
+                                <li>
+                                    <a href="javascript:void(0)">
+                                        <%= value.name %>
+                                    </a>
+                                </li>
+                                <% }) %>
                         </ul>
                     </div>
-
-
+                    
+                    
                     <div class="widget popular-tag-widget">
                         <h5 class="widget-title">Popular Tags</h5>
                         <div class="tags">
-                            <a href="javascript:void(0)">Popular</a>
-                            <a href="javascript:void(0)">Design</a>
-                            <a href="javascript:void(0)">UX</a>
-                            <a href="javascript:void(0)">Usability</a>
-                            <a href="javascript:void(0)">Interview</a>
-                            <a href="javascript:void(0)">Jobs</a>
-                            <a href="javascript:void(0)">Develop</a>
-                            <a href="javascript:void(0)">Business</a>
-                            <a href="javascript:void(0)">Tech</a>
-                            <a href="javascript:void(0)">Consult</a>
-                            <a href="javascript:void(0)">Employee</a>
+                            <% tags.forEach((value,index)=>{ %>
+                                <a href="javascript:void(0)">
+                                    <%= value.name %>
+                                </a>
+                                <% }) %>
                         </div>
                     </div>
 

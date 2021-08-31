@@ -130,6 +130,7 @@ video {
 
 img {
 	max-width: 100%;
+	border-radius: 8px;
 }
 
 h1,
@@ -138,10 +139,10 @@ h3,
 h4,
 h5,
 h6 {
-	font-weight: 600;
+	font-weight: 700;
 	margin: 0px;
 	color: #151515;
-	font-family: 'Poppins', sans-serif;
+	/* font-family: 'Poppins', sans-serif; */
 }
 
 h1 a,
@@ -925,7 +926,7 @@ ol {
 	padding-bottom: 50px;
 	z-index: 2;
 	text-align: left;
-	background: linear-gradient(-45deg, #fd723b, #3080e3);
+	background: linear-gradient(-45deg, #3e6265, #3080e3);
 	-webkit-box-shadow: 0px 7px 30px rgba(0, 0, 0, 0.075);
 	box-shadow: 0px 7px 30px rgba(0, 0, 0, 0.075);
 }
@@ -1285,7 +1286,7 @@ ol {
 
 .pagination .pagination-list li.active a,
 .pagination .pagination-list li:hover a {
-	background: #3080e3;
+	background: #1d3d19;
 	color: #fff;
 	border-color: transparent;
 }
@@ -3982,7 +3983,7 @@ blockquote span {
 	overflow: hidden;
 	padding: 40px;
 	border-radius: 8px;
-	background-color: #413e65;
+	background-color: #1d3d19;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
@@ -4053,7 +4054,7 @@ blockquote span {
 	border-radius: 50%;
 	padding: 0 !important;
 	border: none;
-	background: #3080e3;
+	background: #1d3d19;
 }
 
 .sidebar .widget.search-widget form button:hover {
