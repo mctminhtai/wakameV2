@@ -1,4 +1,35 @@
 <%- contentFor('body') %>
+    <% if (message) { %>
+        <div aria-live="polite" aria-atomic="true" class="position-relative">
+            <!-- Position it: -->
+            <!-- - `.toast-container` for spacing between toasts -->
+            <!-- - `.position-absolute`, `top-0` & `end-0` to position the toasts in the upper right corner -->
+            <!-- - `.p-3` to prevent the toasts from sticking to the edge of the container  -->
+            <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+        
+                <!-- Then put toasts within -->
+
+                <!-- Start toasts -->
+                <div class="toast bg-white" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="5000"
+                    data-bs-autohide="true">
+                    <div class="toast-header">
+                        <img src="/images/logo/logo.png" class="rounded me-2" alt="logo" style="width:50px">
+                        <strong class="me-auto">Message</strong>
+                        <small class="text-muted">just now</small>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body bg-danger bg-opacity-75 text-white">
+                        <%= message %>
+                    </div>
+                </div>
+                <!-- End toasts -->
+
+                
+        
+            </div>
+        </div>
+    <% } %>
+    
 
     <div class="breadcrumbs">
         <div class="container">
@@ -18,9 +49,11 @@
         </div>
     </div>
 
+    
 
     <div class="account-login section">
         <div class="container">
+            
             <div class="row">
                 <div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1 col-12">
                     <form class="card login-form inner-content" method="post" data-bitwarden-watching="1">
@@ -44,7 +77,7 @@
                             <div class="d-flex flex-wrap justify-content-between bottom-content">
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input width-auto" name="rememberMe" id="exampleCheck1">
-                                    <label class="form-check-label">Remember me</label>
+                                    <label class="form-check-label" for="exampleCheck1">Remember me</label>
                                 </div>
                                 <a class="lost-pass" href="/accounts/reset-password">Forgot password?</a>
                             </div>
@@ -62,8 +95,16 @@
                     </form>
                 </div>
             </div>
+            
         </div>
     </div>
 <%- contentFor('stylesheet') %>
     <link rel="stylesheet" href="stylesheets/main.css">
 <%- contentFor('customScript') %>
+    <script>
+        var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+        var toastList = toastElList.map(function (toastEl) {
+            return new bootstrap.Toast(toastEl)
+        })
+        toastList.forEach((toast,index)=>{toast.show()});
+    </script>

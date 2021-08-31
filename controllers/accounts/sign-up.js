@@ -127,6 +127,7 @@ exports.verifyAccount = function (req, res, next) {
 			if (err) {
 				throw err;
 			}
+			req.session.verifyInfo;
 			return res.render('notify', {
 				title: 'Congratulations!',
 				message: 'Your account is activated',

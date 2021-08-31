@@ -800,3 +800,12 @@ blockquote span {
 	margin-top: 30px;
 }
 
+#blogBody {
+	padding-top: 5px;
+}
+#blogBody:focus-visible {
+	outline: none;
+	border: 2px solid #3080e3;
+	box-shadow: 0 0 0 4px rgba(48, 128, 227, 0.25);
+	border-radius: 8px;
+}

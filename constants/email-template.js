@@ -34,7 +34,7 @@ exports.verifyAccountTemplate = function (verifyUrl) {
                             align="left">Let’s make it official. To verify your email address, click the link below.</p>
 
                           <div
-                            style="background-color:#9cead8;margin:24px 0;padding:12px 0;border:1px solid #eeeeee;border-radius:8px;font-size:35px;color:#313745;letter-spacing:5px"
+                            style="background-color:#f9f9f9;margin:24px 0;padding:12px 0;border:1px solid #eeeeee;border-radius:8px;font-size:35px;color:#313745;letter-spacing:5px"
                             align="center">
                             <a href="${verifyUrl}" style="color:#276ee5;text-decoration:none" target="_blank"> Verify Account</a>
                           </div>
@@ -126,7 +126,7 @@ exports.resetPwdTemplate = function (resetUrl) {
                             align="left">To set new password for your account, click the link below.</p>
 
                           <div
-                            style="background-color:#9cead8;margin:24px 0;padding:12px 0;border:1px solid #eeeeee;border-radius:8px;font-size:35px;color:#313745;letter-spacing:5px"
+                            style="background-color:#f9f9f9;margin:24px 0;padding:12px 0;border:1px solid #eeeeee;border-radius:8px;font-size:35px;color:#313745;letter-spacing:5px"
                             align="center">
                             <a href="${resetUrl}" style="color:#276ee5;text-decoration:none" target="_blank"> Reset Password</a>
                           </div>

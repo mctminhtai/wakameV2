@@ -54,6 +54,7 @@ exports.postSignIn = function (req, res, next) {
 		}
 		req.logIn(user, (err) => {
 			if (err) return next(err);
+			console.log(req.body.rememberMe);
 			if (!req.body.rememberMe) {
 				req.session.cookie.maxAge = 1800000;
 			}
@@ -109,15 +110,16 @@ exports.postResetEmail = function (req, res, next) {
 		req.session.verifyInfo = {
 			id: user._id,
 			token: randToken,
-			exprires: Date.now() + 60000,
+			expires: Date.now() + 60000,
 		};
 		var resetPwdUrl = req.headers.origin + '/accounts/' + 'reset-password/' + randToken;
 		sendMail(user.email, 'Reset password', resetPwdTemplate(resetPwdUrl));
-		res.render('notify', {
-			title: 'Congratulations!',
-			message: 'Email has been sent to your email address, please check your email',
-			url: '/accounts/sign-in',
-		});
+		// res.render('notify', {
+		// 	title: 'Congratulations!',
+		// 	message: 'Email has been sent to your email address, please check your email',
+		// 	url: '/accounts/sign-in',
+		// });
+		return res.render('reset-password', { message: 'Please check email for reset password' });
 	});
 };
 exports.validatepostResetEmail = function (req, res, next) {
@@ -135,30 +137,61 @@ exports.validatepostResetEmail = function (req, res, next) {
 	return res.render('reset-password', { message: 'Please check your input form' });
 };
 exports.getChangePwd = function (req, res, next) {
-	if (req.params.token === req.session.verifyInfo.token) {
-		return res.render('change-password', { message: '' });
+	if (!req.session.verifyInfo) {
+		return res.redirect('/');
 	}
+	if (req.params.token !== req.session.verifyInfo.token) {
+		return res.render('notify', {
+			title: 'OOPS!',
+			message: 'token is not match',
+			url: '/accounts/reset-password',
+		});
+	}
+	if (Date.now() > req.session.verifyInfo.expires) {
+		req.session.verifyInfo;
+		return res.render('notify', {
+			title: 'OOPS!',
+			message: 'token is expired',
+			url: '/accounts/reset-password',
+		});
+	}
+	return res.render('change-password', { message: '' });
 };
+
 exports.postChangePwd = function (req, res, next) {
-	if (req.params.token === req.session.verifyInfo.token) {
-		bcrypt.hash(req.body.password, 12, (err, hashpwd) => {
+	if (!req.session.verifyInfo) {
+		return res.redirect('/');
+	}
+	if (req.params.token !== req.session.verifyInfo.token) {
+		return res.render('notify', {
+			title: 'OOPS!',
+			message: 'token is not match',
+			url: '/accounts/reset-password',
+		});
+	}
+	// if (Date.now() > req.session.verifyInfo.expires) {
+	// 	return res.render('notify', {
+	// 		title: 'OOPS!',
+	// 		message: 'token is expired',
+	// 		url: '/accounts/reset-password',
+	// 	});
+	// }
+	return bcrypt.hash(req.body.password, 12, (err, hashpwd) => {
+		if (err) {
+			return done(err);
+		}
+		Users.findByIdAndUpdate(req.session.verifyInfo.id, { password: hashpwd }, { new: true }, (err, doc) => {
 			if (err) {
-				return done(err);
+				throw err;
 			}
-			Users.findByIdAndUpdate(req.session.verifyInfo.id, { password: hashpwd }, { new: true }, (err, doc) => {
-				if (err) {
-					throw err;
-				}
-				return res.render('notify', {
-					title: 'Congratulations!',
-					message: 'Your password has been reset',
-					url: '/accounts/sign-in',
-				});
+			delete req.session.verifyInfo;
+			return res.render('notify', {
+				title: 'Congratulations!',
+				message: 'Your password has been reset',
+				url: '/accounts/sign-in',
 			});
 		});
-	} else {
-		return res.send('Some thing when wrong');
-	}
+	});
 };
 exports.validatepostChangePwd = function (req, res, next) {
 	var { password, confirmPassword } = req.body;
