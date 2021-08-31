@@ -42,7 +42,7 @@ passport.use(
 );
 
 exports.getSignIn = function (req, res, next) {
-	res.render('sign-in', { message: '' });
+	res.render('sign-in', { message: '', user: req.user });
 };
 exports.postSignIn = function (req, res, next) {
 	passport.authenticate('local.signin', (err, user, info) => {
@@ -50,7 +50,7 @@ exports.postSignIn = function (req, res, next) {
 			return next(err);
 		}
 		if (!user) {
-			return res.render('sign-in', { message: info.message });
+			return res.render('sign-in', { message: info.message, user: req.user });
 		}
 		req.logIn(user, (err) => {
 			if (err) return next(err);
@@ -93,10 +93,10 @@ exports.validateSignInForm = function (req, res, next) {
 	if (isValid) {
 		return next();
 	}
-	return res.render('sign-in', { message: 'Please check your input value' });
+	return res.render('sign-in', { message: 'Please check your input value', user: req.user });
 };
 exports.getResetPassword = function (req, res, next) {
-	return res.render('reset-password', { message: '' });
+	return res.render('reset-password', { message: '', user: req.user });
 };
 exports.postResetEmail = function (req, res, next) {
 	Users.findOne({ email: req.body.email }, function (err, user) {
@@ -119,7 +119,7 @@ exports.postResetEmail = function (req, res, next) {
 		// 	message: 'Email has been sent to your email address, please check your email',
 		// 	url: '/accounts/sign-in',
 		// });
-		return res.render('reset-password', { message: 'Please check email for reset password' });
+		return res.render('reset-password', { message: 'Please check email for reset password', user: req.user });
 	});
 };
 exports.validatepostResetEmail = function (req, res, next) {
@@ -134,7 +134,7 @@ exports.validatepostResetEmail = function (req, res, next) {
 	if (isValid) {
 		return next();
 	}
-	return res.render('reset-password', { message: 'Please check your input form' });
+	return res.render('reset-password', { message: 'Please check your input form', user: req.user });
 };
 exports.getChangePwd = function (req, res, next) {
 	if (!req.session.verifyInfo) {
@@ -155,7 +155,7 @@ exports.getChangePwd = function (req, res, next) {
 			url: '/accounts/reset-password',
 		});
 	}
-	return res.render('change-password', { message: '' });
+	return res.render('change-password', { message: '', user: req.user });
 };
 
 exports.postChangePwd = function (req, res, next) {
@@ -222,5 +222,5 @@ exports.validatepostChangePwd = function (req, res, next) {
 	if (isValid) {
 		return next();
 	}
-	return res.render('change-password', { message: 'Please check your input form' });
+	return res.render('change-password', { message: 'Please check your input form', user: req.user });
 };

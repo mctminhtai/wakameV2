@@ -2,7 +2,7 @@ var { Blogs, Categories, Tags } = require('../../../models/index');
 exports.getAddBlog = async function (req, res, next) {
 	const [cates_list, tags_list] = await Promise.all([Categories.find({}), Tags.find({})]);
 
-	return res.render('blog-add', { cates_list, tags_list });
+	return res.render('blog-add', { cates_list, tags_list, user: req.user });
 };
 exports.postAddBlog = async function (req, res, next) {
 	var {title,blogBody,description,category,tags} = req.body;

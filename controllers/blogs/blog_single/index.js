@@ -5,5 +5,5 @@ exports.getBlogSingle = async function (req, res, next) {
 		.populate({ path: 'category', select: 'name' })
 		.populate({ path: 'userId', select: 'fullName' });
 	console.log(blog);
-	return res.render('blog-detail', { blog });
+	return res.render('blog-detail', { blog, user: req.user });
 };

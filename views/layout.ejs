@@ -8,7 +8,7 @@
     <title>Blink - Startup &amp; SaaS Bootstrap 5 Template.</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/x-icon" href="images/logo/logo.svg">
+    <link rel="shortcut icon" type="image/x-icon" href="images/logo/logo.png">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
@@ -48,7 +48,8 @@
 
                         <nav class="navbar navbar-expand-lg">
                             <a class="navbar-brand" href="/">
-                                <img src="images/logo/logo.svg" alt="Logo">
+                                <img src="images/logo/logo.png" alt="Logo">
+                                WAKAME
                             </a>
                             <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -108,8 +109,12 @@
                                 </ul>
                             </div>
                             <div class="button">
-                                <a href="/accounts/sign-in" class="signin">Sign In</a>
-                                <a href="/accounts/sign-up" class="signup">Sign Up</a>
+                                <% if (user){ %>
+                                    <a href="/accounts/sign-out" class="signup">Sign Out</a>
+                                <% }else{ %>
+                                    <a href="/accounts/sign-in" class="signin">Sign In</a>
+                                    <a href="/accounts/sign-up" class="signup">Sign Up</a>
+                                <% } %>
                             </div>
                         </nav>
 

@@ -1,12 +1,12 @@
 exports.privateRoute = function (req, res, next) {
 	if (req.isAuthenticated()) {
-		next();
+		return next();
 	}
-	res.redirect('/accounts/sign-in');
+	return res.redirect('/accounts/sign-in');
 };
 exports.retrictedRoute = function (req, res, next) {
 	if (req.isAuthenticated()) {
-		res.redirect('/');
+		return res.redirect('/');
 	}
-	next();
+	return next();
 };

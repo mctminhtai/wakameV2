@@ -55,7 +55,7 @@ passport.deserializeUser(function (id, done) {
 	});
 });
 exports.getSignUp = function (req, res, next) {
-	res.render('sign-up', { message: '' });
+	res.render('sign-up', { message: '', user: req.user });
 };
 exports.postSignUp = function (req, res, next) {
 	passport.authenticate('local.signup', (err, user, info) => {
@@ -63,7 +63,7 @@ exports.postSignUp = function (req, res, next) {
 			return next(err);
 		}
 		if (!user) {
-			return res.render('sign-up', { message: 'already exist account, please sign in' });
+			return res.render('sign-up', { message: 'already exist account, please sign in', user: req.user });
 		}
 		var randToken = randomString.password({
 			length: 100,
@@ -76,7 +76,7 @@ exports.postSignUp = function (req, res, next) {
 		};
 		var verifyUrl = req.headers.origin + '/accounts/' + 'verify/' + randToken;
 		sendMail(user.email, 'Please verify your account', verifyAccountTemplate(verifyUrl));
-		return res.render('sign-up', { message: 'Please verify your account' });
+		return res.render('sign-up', { message: 'Please verify your account', user: req.user });
 	})(req, res, next);
 };
 exports.validateSignUpForm = function (req, res, next) {
@@ -110,7 +110,7 @@ exports.validateSignUpForm = function (req, res, next) {
 	if (isValid) {
 		return next();
 	}
-	return res.render('sign-up', { message: 'Please check your input form' });
+	return res.render('sign-up', { message: 'Please check your input form', user: req.user });
 };
 exports.verifyAccount = function (req, res, next) {
 	if (!req.params.token) {

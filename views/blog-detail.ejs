@@ -68,8 +68,8 @@
                                 <div class="desc-top">
                                     <h6>Arista Williamson</h6>
                                     <span class="date">19th May 2023</span>
-                                    <a href="javascript:void(0)" class="reply-link"><i
-                                            class="lni lni-reply"></i>Reply</a>
+                                    <!-- <a href="javascript:void(0)" class="reply-link"><i
+                                            class="lni lni-reply"></i>Reply</a> -->
                                 </div>
                                 <p>
                                     Donec aliquam ex ut odio dictum, ut consequat leo interdum. Aenean nunc
@@ -88,8 +88,8 @@
                                 <div class="desc-top">
                                     <h6>Alex Jemmi</h6>
                                     <span class="date">12th May 2023</span>
-                                    <a href="javascript:void(0)" class="reply-link"><i
-                                            class="lni lni-reply"></i>Reply</a>
+                                    <!-- <a href="javascript:void(0)" class="reply-link"><i
+                                            class="lni lni-reply"></i>Reply</a> -->
                                 </div>
                                 <p>
                                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -101,40 +101,41 @@
                     </ul>
                 </div>
 
-
-                <div class="comment-form">
-                    <h3 class="comment-reply-title">Leave a comment</h3>
-                    <form action="#" method="POST">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="form-box form-group">
-                                    <label>Comment</label>
-                                    <textarea name="#" class="form-control form-control-custom"
-                                        placeholder="Write your Comments"></textarea>
+                <% if (user) { %>
+                    <div class="comment-form">
+                        <h3 class="comment-reply-title">Leave a comment</h3>
+                        <form action="#" method="POST">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-box form-group">
+                                        <label>Comment</label>
+                                        <textarea name="#" class="form-control form-control-custom"
+                                            placeholder="Write your Comments"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <div class="form-box form-group">
+                                        <label>Your name</label>
+                                        <input type="text" name="name" class="form-control form-control-custom" placeholder="Alex Deo">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <div class="form-box form-group">
+                                        <label>Email address</label>
+                                        <input type="email" name="email" class="form-control form-control-custom"
+                                            placeholder="example@gmail.com">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="button">
+                                        <button type="submit" class="btn">Post Comment</button>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-12">
-                                <div class="form-box form-group">
-                                    <label>Your name</label>
-                                    <input type="text" name="name" class="form-control form-control-custom"
-                                        placeholder="Alex Deo">
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-12">
-                                <div class="form-box form-group">
-                                    <label>Email address</label>
-                                    <input type="email" name="email" class="form-control form-control-custom"
-                                        placeholder="example@gmail.com">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="button">
-                                    <button type="submit" class="btn">Post Comment</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                        </form>
+                    </div>
+                <% } %>
+                
 
             </div>
             <aside class="col-lg-4 col-md-12 col-12">
@@ -255,3 +256,6 @@
 <%- contentFor('stylesheet') %>
     <link rel="stylesheet" href="stylesheets/main.css">
 <%- contentFor('customScript') %>
+    <script>
+        document.querySelector('.scroll-top').setAttribute('href', location.href + '#');
+    </script>

@@ -699,6 +699,9 @@
   <link rel="stylesheet" href="stylesheets/main.css">
 <%- contentFor('customScript') %>
   <script>
+    document.querySelector('header').classList.remove('others-pages');
+  </script>
+  <script>
     //========= testimonial 
     tns({
       container: '.testimonial-slider',

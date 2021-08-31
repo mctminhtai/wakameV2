@@ -180,3 +180,6 @@
 <%- contentFor('stylesheet') %>
     <link rel="stylesheet" href="stylesheets/main.css">
 <%- contentFor('customScript') %>
+    <script>
+        document.querySelector('.scroll-top').setAttribute('href',location.href+'#');
+    </script>

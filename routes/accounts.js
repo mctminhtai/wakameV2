@@ -21,7 +21,7 @@ router.get('/sign-in',routeAuthenticate.retrictedRoute, getSignIn);
 router.post('/sign-in', routeAuthenticate.retrictedRoute, validateSignInForm, postSignIn);
 router.get('/sign-up', routeAuthenticate.retrictedRoute, getSignUp);
 router.post('/sign-up', routeAuthenticate.retrictedRoute, validateSignUpForm, postSignUp);
-router.get('/log-out', function (req, res) {
+router.get('/sign-out', function (req, res) {
 	req.logout();
 	res.redirect('/');
 });
