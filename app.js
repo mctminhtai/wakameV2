@@ -15,6 +15,12 @@ var homeRouter = require('./routes/home');
 var blogsRouter = require('./routes/blogs');
 var accountsRouter = require('./routes/accounts');
 var uploadFileRouter = require('./routes/uploads');
+var contactRouter = require('./routes/contact');
+var toolsRouter = require('./routes/tools');
+
+var redis = require('redis');
+var redisStore = require('connect-redis')(session);
+var redisClient = redis.createClient(process.env.REDIS_URL);
 
 var app = express();
 
@@ -31,6 +37,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(
 	session({
 		secret: process.env.SESSION_SECRET_KEY,
+		store: new redisStore({
+			client: redisClient,
+		}),
 		saveUninitialized: false,
 		resave: false,
 		cookie: { secure: false },
@@ -43,6 +52,8 @@ app.use('/', homeRouter);
 app.use('/blog', blogsRouter);
 app.use('/accounts', accountsRouter);
 app.use('/upload', uploadFileRouter);
+app.use('/contact', contactRouter);
+app.use('/tools', toolsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

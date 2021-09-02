@@ -8,6 +8,7 @@
 	},
 	"dependencies": {
 		"bcryptjs": "^2.4.3",
+		"connect-redis": "^6.0.0",
 		"cookie-parser": "~1.4.4",
 		"debug": "~2.6.9",
 		"dotenv": "^10.0.0",
@@ -24,6 +25,7 @@
 		"passport": "^0.4.1",
 		"passport-local": "^1.0.0",
 		"randostrings": "^0.1.6",
+		"redis": "^3.1.2",
 		"validator": "^13.6.0"
 	}
 }

@@ -13,6 +13,7 @@ const blogSchema = mongoose.Schema({
 	dateCreated: { type: Date, default: new Date() },
 	dateUpdated: { type: Date, default: new Date() },
 	status: { type: Boolean, default: false },
+	readCount: { type: Number, default: 0 },
 });
 
 exports.Blogs = mongoose.model('Blogs', blogSchema);

@@ -70,68 +70,21 @@
             </div>
             <aside class="col-lg-4 col-md-12 col-12">
                 <div class="sidebar">
-
-                    <div class="widget search-widget">
-                        <h5 class="widget-title">Search This Site</h5>
-                        <form action="#">
-                            <input type="text" placeholder="Search ...">
-                            <button type="submit"><i class="fas fa-search"></i></button>
-                        </form>
-                    </div>
-
-
-                    <div class="widget popular-feeds">
-                        <h5 class="widget-title">Popular Feeds</h5>
-                        <div class="popular-feed-loop">
-                            <div class="single-popular-feed">
-                                <div class="feed-desc">
-                                    <a href="javascript:void(0)" class="cetagory">Creative</a>
-                                    <h6 class="post-title"><a href="blog/blog-detail">Bringing Great Design
-                                            Ideas To Completion</a></h6>
-                                    <span class="time"><i class="lni lni-calendar"></i> 05th Nov 2023</span>
-                                </div>
-                            </div>
-                            <div class="single-popular-feed">
-                                <div class="feed-desc">
-                                    <a href="javascript:void(0)" class="cetagory">Jobs</a>
-                                    <h6 class="post-title"><a href="blog/blog-detail">Live Life Smart And
-                                            Focus On The Positive</a></h6>
-                                    <span class="time"><i class="lni lni-calendar"></i> 24th March 2023</span>
-                                </div>
-                            </div>
-                            <div class="single-popular-feed">
-                                <div class="feed-desc">
-                                    <a href="javascript:void(0)" class="cetagory">Marketing</a>
-                                    <h6 class="post-title"><a href="blog/blog-detail">How did we get 1M+
-                                            visitors in 30 days without anything!</a></h6>
-                                    <span class="time"><i class="lni lni-calendar"></i> 30th Jan 2023</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="widget categories-widget">
-                        <h5 class="widget-title">Categories</h5>
-                        <ul class="custom">
-                            <% categories.forEach((value,index)=>{ %>
-                                <li>
-                                    <a href="javascript:void(0)"><%= value.name %></a>
-                                </li>
-                            <% }) %>
-                        </ul>
-                    </div>
-
-
-                    <div class="widget popular-tag-widget">
-                        <h5 class="widget-title">Popular Tags</h5>
-                        <div class="tags">
-                            <% tags.forEach((value,index)=>{ %>
-                                <a href="javascript:void(0)"><%= value.name %></a>
-                            <% }) %>
-                        </div>
-                    </div>
-
+                
+                
+                    <%- include('partials/widget/search-widget') %>
+                
+                
+                    <%- include('partials/widget/popular-feeds') %>
+                
+                
+                    <%- include('partials/widget/categories-widget') %>
+                
+                
+                    <%- include('partials/widget/popular-tag-widget') %>
+                
+                
+                
                 </div>
             </aside>
         </div>
