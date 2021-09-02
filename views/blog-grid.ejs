@@ -55,15 +55,15 @@
 
                 <div class="pagination left">
                     <ul class="pagination-list">
-                        <li><a href="/blog?page=<%= pagination.currentPage - 1 %>">Prev</a></li>
+                        <li><a href="<%= paginationUrl %><%= Number(pagination.currentPage) - 1 %>">Prev</a></li>
                         <% for(let i = 1; i <= pagination.pageCount; i++){ %>
                             <% if(i==pagination.currentPage) { %>
-                                <li class="active"><a href="/blog?page=<%= i %>"><%= i %></a></li>
+                                <li class="active"><a href="<%= paginationUrl + i %>"><%= i %></a></li>
                             <% }else{ %>
-                                <li><a href="/blog?page=<%= i %>"><%= i %></a></li>
+                                <li><a href="<%= paginationUrl + i %>"><%= i %></a></li>
                             <% } %>
                         <% } %>
-                        <li><a href="/blog?page=<%= Number(pagination.currentPage) + 1 %>">Next</a></li>
+                        <li><a href="<%= paginationUrl %><%= Number(pagination.currentPage) + 1 %>">Next</a></li>
                     </ul>
                 </div>
 

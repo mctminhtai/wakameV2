@@ -10,9 +10,12 @@
                     <h6 class="post-title"><a href="blog/blog-detail/<%= value._id %>">
                             <%= value.title.substring(0, 60)+"..." %>
                         </a></h6>
-                    <span class="time"><i class="lni lni-calendar"></i> 05th Nov 2023</span>
+                    <span class="time"><i class="lni lni-calendar"></i>
+                        <%= value.dateCreated.getDate() + '/' + value.dateCreated.getMonth() + '/' +
+                            value.dateCreated.getFullYear() %>
+                    </span>
                 </div>
             </div>
-        <% }) %>
+            <% }) %>
     </div>
 </div>

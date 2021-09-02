@@ -1,16 +1,23 @@
 var { Blogs, Tags, Categories } = require('../../../models/index');
+var { blogsSearch } = require('./searchBlog');
 const blogGridIndex = async function (req, res, next) {
+	let paginationUrl = req.originalUrl;
+	if (paginationUrl.indexOf('?page=') > -1) {
+		paginationUrl = paginationUrl.slice(0, paginationUrl.indexOf('?page=') + 6);
+	} else {
+		paginationUrl = paginationUrl + '?page=';
+	}
 	var [blogs, tags, categories] = await Promise.all([
-		Blogs.find({}, 'title description category dateUpdated readCount')
+		Blogs.find({}, 'title description category dateCreated readCount')
 			.populate({ path: 'category', select: 'name' })
-			.sort({ dateUpdated: 'desc' }),
+			.sort({ dateCreated: 'desc' }),
 		Tags.find({}),
 		Categories.find({}),
 	]);
 	var popularBlogs = [...blogs].sort((a, b) => {
 		return b.readCount - a.readCount;
 	});
-	console.log(popularBlogs);
+	// console.log(popularBlogs);
 	var itemPerPage = 8;
 	var pageCount = Math.ceil(blogs.length / itemPerPage);
 	if (req.query.page) {
@@ -32,8 +39,10 @@ const blogGridIndex = async function (req, res, next) {
 		user: req.user,
 		pagination: { pageCount, currentPage },
 		popularBlogs,
+		paginationUrl,
 	});
 };
 module.exports = {
 	blogGridIndex,
+	blogsSearch,
 };
