@@ -1,6 +1,21 @@
 var { Blogs, Categories, Tags } = require('../../../models/index');
-exports.getAddBlogLibrary = async function(req,res,next){
+var { saveFile } = require('../../upload/saveOnMongo/index');
+exports.redirectToUpload = async function (req, res, next) {
+	// let blog = await Blogs.create({
+	// 	title: 'temporary',
+	// 	description: 'temporary',
+	// 	body: 'this is empty blog',
+	// 	userId: '612cfc4e05583a4abc32dc6d',
+	// });
+	return res.redirect('/blog/blog-add/upload-file');
+};
+exports.getAddBlogAlbum = async function (req, res, next) {
+	console.log(req.params.id);
 	return res.render('blog-add-library', { user: req.user });
+};
+exports.postAddBlogAlbum = async function(req,res,next){
+	console.log(req.body);
+	res.status(201).send('OK');
 }
 exports.getAddBlog = async function (req, res, next) {
 	const [cates_list, tags_list] = await Promise.all([Categories.find({}), Tags.find({})]);
@@ -8,11 +23,11 @@ exports.getAddBlog = async function (req, res, next) {
 	return res.render('blog-add', { cates_list, tags_list, user: req.user });
 };
 exports.postAddBlog = async function (req, res, next) {
-	var {title,blogBody,description,category,tags} = req.body;
-	if(Array.isArray(category)){
+	var { title, blogBody, description, category, tags } = req.body;
+	if (Array.isArray(category)) {
 		category = category[0];
 	}
-	if(!Array.isArray(tags)){
+	if (!Array.isArray(tags)) {
 		tags = [tags];
 	}
 	var blog = await Blogs.create({
@@ -26,6 +41,10 @@ exports.postAddBlog = async function (req, res, next) {
 	// console.log(blog);
 	return res.redirect(`/blog/blog-detail/${blog._id}`);
 };
+
+
+
+
 // await Categories.create([
 // 	{ name: 'Web Design', description: 'thiet ke web' },
 // 	{ name: 'Branding', description: 'thiet ke thuong hieu' },

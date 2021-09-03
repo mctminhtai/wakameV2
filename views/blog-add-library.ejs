@@ -5,7 +5,7 @@
             <h2 class="wow fadeInUp dropzone-title" >Please Upload Images</h2>
             <div id="dropzone" class="wow fadeInUp dropzone" ></div>
             <div class="button d-grid d-md-inline-block" >
-                <a href="#" class="wow fadeInUp btn dropzone-next" >Next Step</a>
+                <button class="wow fadeInUp btn dropzone-next" onclick="submitUploadedFiles()">Next Step</button>
             </div>
         </div>
 
@@ -17,9 +17,11 @@
 
 <%- contentFor('customScript') %>
     <script src="javascripts/dropzone.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     
     <script>
-        let uploadUrl = "/upload/photo"
+        const uploadUrl = "/upload/photo";
+        let imgList = [];
         Dropzone.autoDiscover = false;
         let myDropzone = new Dropzone("div#dropzone", { 
             url: uploadUrl ,
@@ -40,12 +42,20 @@
             addRemoveLinks: true,
         });
         myDropzone.on("removedfile",(file)=>{
-            let xhttp = new XMLHttpRequest();
             const response = JSON.parse(file.xhr.response);
             let deleteUrl = uploadUrl + '/' + response.ObjectId;
-            console.log(deleteUrl);
-            xhttp.open('DELETE',deleteUrl);
-            xhttp.send();
+            imgList.splice(imgList.indexOf(response.ObjectId),1);
+            console.log(imgList);
+            axios.delete(deleteUrl);
+        });
+        myDropzone.on("success",(file)=>{
+            console.log(file);
+            const response = JSON.parse(file.xhr.response);
+            imgList.push(response.ObjectId);
+            console.log(imgList);
         });
         
+        function submitUploadedFiles(){
+            axios.post(location.pathname,{imgList}).then((response)=>{console.log(response)}).catch((error)=>{console.log(error)});
+        }
     </script>
