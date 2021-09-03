@@ -582,7 +582,7 @@ blockquote span {
 	overflow: hidden;
 	padding: 40px;
 	border-radius: 8px;
-	background-color: #3080e3;
+	background-color: #444444;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {

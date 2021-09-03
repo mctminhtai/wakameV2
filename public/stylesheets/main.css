@@ -1462,7 +1462,8 @@ ol {
 ========================================*/
 .header {
 	width: 100%;
-	background: transparent;
+	background: rgba(255,255,255,0.3);
+	backdrop-filter: blur(15px);
 	position: absolute;
 	width: 100%;
 	left: 0;
@@ -1700,7 +1701,7 @@ ol {
 	-webkit-transition: all 0.3s ease-out 0s;
 	transition: all 0.3s ease-out 0s;
 	top: 0;
-	background-color: #fff;
+	/* background-color: #fff; */
 }
 
 .navbar-expand-lg .navbar-nav {

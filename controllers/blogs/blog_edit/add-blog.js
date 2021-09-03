@@ -1,4 +1,7 @@
 var { Blogs, Categories, Tags } = require('../../../models/index');
+exports.getAddBlogLibrary = async function(req,res,next){
+	return res.render('blog-add-library', { user: req.user });
+}
 exports.getAddBlog = async function (req, res, next) {
 	const [cates_list, tags_list] = await Promise.all([Categories.find({}), Tags.find({})]);
 

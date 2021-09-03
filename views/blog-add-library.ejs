@@ -1,0 +1,51 @@
+<%- contentFor('body') %>
+    <div class="container" style="margin-top: 200px;">
+
+        <div class="row">
+            <h2 class="wow fadeInUp dropzone-title" >Please Upload Images</h2>
+            <div id="dropzone" class="wow fadeInUp dropzone" ></div>
+            <div class="button d-grid d-md-inline-block" >
+                <a href="#" class="wow fadeInUp btn dropzone-next" >Next Step</a>
+            </div>
+        </div>
+
+    </div>
+
+<%- contentFor('stylesheet') %>
+    <link rel="stylesheet" href="stylesheets/main.css">
+    <link rel="stylesheet" href="stylesheets/dropzone.css">
+
+<%- contentFor('customScript') %>
+    <script src="javascripts/dropzone.js"></script>
+    
+    <script>
+        let uploadUrl = "/upload/photo"
+        Dropzone.autoDiscover = false;
+        let myDropzone = new Dropzone("div#dropzone", { 
+            url: uploadUrl ,
+            paramName: "file", // The name that will be used to transfer the file
+            maxFilesize: 10, // MB
+            parallelUploads: 4,
+            thumbnailWidth:'300',
+            thumbnailHeight:'300',
+            resizeWidth: null,
+            resizeHeight: null,
+            resizeMimeType: null,
+            autoProcessQueue: true, //auto upload to server or upload when click some button
+            resizeQuality: 1,
+            resizeMethod: 'contain',
+            maxFiles: null,
+            acceptedFiles: 'image/*',//image/*,application/pdf,.psd
+            previewsContainer: null,
+            addRemoveLinks: true,
+        });
+        myDropzone.on("removedfile",(file)=>{
+            let xhttp = new XMLHttpRequest();
+            const response = JSON.parse(file.xhr.response);
+            let deleteUrl = uploadUrl + '/' + response.ObjectId;
+            console.log(deleteUrl);
+            xhttp.open('DELETE',deleteUrl);
+            xhttp.send();
+        });
+        
+    </script>
