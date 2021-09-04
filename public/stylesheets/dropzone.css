@@ -212,13 +212,14 @@
 }
 
 .dropzone {
-	min-height: 150px;
+	min-height: 250px;
 	border: 2px solid rgba(0, 0, 0, 0.05);
 	background: white;
 	padding: 20px 20px;
 	box-shadow: 0px 0px 10px #00000013;
 	border-radius: 18px;
-  margin-bottom: 50px;
+	margin-bottom: 50px;
+	border: 2px dashed;
 }
 .dropzone.dz-clickable {
 	cursor: pointer;
@@ -241,7 +242,7 @@
 }
 .dropzone .dz-message {
 	text-align: center;
-	margin: 2em 0;
+	margin: 4em 0;
 }
 .dropzone .dz-message .dz-button {
 	background: none;
@@ -251,7 +252,7 @@
 	font: inherit;
 	cursor: pointer;
 	outline: inherit;
-  font-size: 30px;
+	font-size: 30px;
 }
 .dropzone .dz-preview {
 	position: relative;
@@ -290,14 +291,14 @@
 	display: block;
 	cursor: pointer;
 	border: 2px solid #3080e3;
-  padding: 8px 0px;
-  border-radius: 20px;
-  margin-top: 15px;
+	padding: 8px 0px;
+	border-radius: 20px;
+	margin-top: 15px;
 }
 .dropzone .dz-preview .dz-remove:hover {
 	border-color: white;
-  background-color: #3080e3;
-  color: white;
+	background-color: #3080e3;
+	color: white;
 }
 .dropzone .dz-preview .dz-remove:hover {
 	text-decoration: underline;
@@ -491,16 +492,22 @@
 	border-bottom: 6px solid #be2626;
 }
 
-
 /* My Custom CSS */
-.btn.dropzone-next{
-  float: right;
+.btn.dropzone-next {
+	float: right;
 }
-.dropzone-title{
-  font-size: 34px;
-  margin-bottom: 25px;
-  line-height: 42px;
-  text-transform: capitalize;
-  font-weight: 700;
-  text-align: center;
+.dropzone-title {
+	font-size: 34px;
+	margin-bottom: 25px;
+	line-height: 42px;
+	text-transform: capitalize;
+	font-weight: 700;
+	text-align: center;
+}
+
+.upload-form{
+	padding: 50px;
+	box-shadow: 0px 0px 25px #00000012;
+    border-radius: 12px;
+    background-color: #fff;
 }

@@ -69,6 +69,7 @@ exports.postEditBlog = async function (req, res, next) {
 		},
 		{ new: true }
 	);
+	
 	if(updatedBlog){
 		return res.redirect(`/blog/blog-detail/${updatedBlog._id}`);
 	}else{

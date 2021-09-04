@@ -2,7 +2,7 @@
     <h5 class="widget-title">Popular Tags</h5>
     <div class="tags">
         <% tags.forEach((value,index)=>{ %>
-            <a href="javascript:void(0)">
+            <a href="/blog/blog-search/tag/<%= value._id %>">
                 <%= value.name %>
             </a>
         <% }) %>

@@ -12,7 +12,7 @@ let myDropzone = new Dropzone('div#dropzone', {
 	resizeHeight: '600',
 	resizeMimeType: null,
 	autoProcessQueue: true, //auto upload to server or upload when click some button
-	resizeQuality: 1,
+	resizeQuality: 0.5,
 	resizeMethod: 'contain',
 	maxFiles: null,
 	acceptedFiles: 'image/*', //image/*,application/pdf,.psd

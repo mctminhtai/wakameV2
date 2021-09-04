@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var { blogGridIndex, blogsSearch } = require('../controllers/blogs/blog_grid/index');
+var { blogGridIndex, blogsSearch,blogsSearchByCategory,blogsSearchByTag } = require('../controllers/blogs/blog_grid/index');
 var { getBlogSingle } = require('../controllers/blogs/blog_single/index');
 var {
 	getAddBlogAlbum,
@@ -21,5 +21,8 @@ router.post('/blog-add/:id', routeAuthenticate.privateRoute, postEditBlog);
 
 router.get('/blog-detail/:blogid', getBlogSingle);
 router.get('/blog-search', blogsSearch);
+router.get('/blog-search/category/:id', blogsSearchByCategory);
+router.get('/blog-search/tag/:id', blogsSearchByTag);
+
 
 module.exports = router;

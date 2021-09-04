@@ -1,5 +1,7 @@
 var { Blogs, Tags, Categories } = require('../../../models/index');
 var { blogsSearch } = require('./searchBlog');
+var { blogsSearchByCategory } = require('./searchByCategory');
+var { blogsSearchByTag } = require('./searchByTag');
 const blogGridIndex = async function (req, res, next) {
 	let paginationUrl = req.originalUrl;
 	if (paginationUrl.indexOf('?page=') > -1) {
@@ -45,4 +47,6 @@ const blogGridIndex = async function (req, res, next) {
 module.exports = {
 	blogGridIndex,
 	blogsSearch,
+	blogsSearchByCategory,
+	blogsSearchByTag,
 };

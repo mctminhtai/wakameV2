@@ -1,6 +1,5 @@
 const { multiSearch } = require('../../../utils/multiSearch');
 const { Blogs, Tags, Categories } = require('../../../models/index');
-const { set } = require('mongoose');
 exports.blogsSearch = async function (req, res, next) {
 	let words = req.query.searchString ? req.query.searchString : [];
 	let paginationUrl = req.originalUrl;
@@ -10,7 +9,7 @@ exports.blogsSearch = async function (req, res, next) {
 		paginationUrl = paginationUrl + '&&page=';
 	}
 	let [blogs, tags, categories] = await Promise.all([
-		Blogs.find({}, 'title description category dateCreated readCount')
+		Blogs.find({}, 'title description category dateCreated readCount thumbImg')
 			.populate({ path: 'category', select: 'name' })
 			.sort({ dateCreated: 'desc' }),
 		Tags.find({}),
