@@ -1462,7 +1462,7 @@ ol {
 ========================================*/
 .header {
 	width: 100%;
-	background: rgba(255,255,255,0.3);
+	background: rgba(255, 255, 255, 0.3);
 	backdrop-filter: blur(15px);
 	position: absolute;
 	width: 100%;
@@ -2733,7 +2733,7 @@ ol {
 	position: relative;
 	background-color: #151515;
 	z-index: 0;
-  overflow: hidden;
+	overflow: hidden;
 }
 
 .about .shape-1 {
@@ -3448,6 +3448,17 @@ ol {
 
 .single-blog-grid .blog-img a {
 	width: 100%;
+	max-height: 153px;
+}
+@media (min-width: 1200px) {
+	.single-blog-grid .blog-img a {
+		max-height: 186px;
+	}
+}
+@media (max-width: 767px) {
+	.single-blog-grid .blog-img a {
+		max-height: 200px;
+	}
 }
 
 .single-blog-grid .blog-img img {

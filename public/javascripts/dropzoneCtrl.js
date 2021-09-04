@@ -9,7 +9,7 @@ let myDropzone = new Dropzone('div#dropzone', {
 	thumbnailWidth: '300',
 	thumbnailHeight: '300',
 	resizeWidth: null,
-	resizeHeight: null,
+	resizeHeight: '600',
 	resizeMimeType: null,
 	autoProcessQueue: true, //auto upload to server or upload when click some button
 	resizeQuality: 1,
