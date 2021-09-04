@@ -32,7 +32,7 @@ exports.getEditBlog = async function (req, res, next) {
 	]);
 	//chuyen tu id qua URL cho tung buc anh
 	const newImgList = blog.images.map((id, index) => {
-		return 'http://localhost:3000/upload/photo/' + id;
+		return '/upload/photo/' + id;
 	});
 
 	blog.images = newImgList;

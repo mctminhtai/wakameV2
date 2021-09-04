@@ -11,7 +11,6 @@ exports.getBlogSingle = async function (req, res, next) {
 			.populate({ path: 'category', select: 'name' })
 			.populate({ path: 'userId', select: 'fullName' }),
 	]);
-	console.log(blog.dateUpdated);
 	await Blogs.findByIdAndUpdate(blogId, { readCount: blog.readCount + 1 });
 	return res.render('blog-detail', { blog, popularBlogs, tags, categories, user: req.user });
 };
