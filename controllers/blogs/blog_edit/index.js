@@ -1,8 +1,8 @@
-var { getAddBlog, postAddBlog, getAddBlogAlbum,postAddBlogAlbum, redirectToUpload } = require('./add-blog');
+var { getEditBlog, postEditBlog, getAddBlogAlbum,postAddBlogAlbum, redirectToUpload } = require('./add-blog');
 
 module.exports = {
-	getAddBlog,
-	postAddBlog,
+	getEditBlog,
+	postEditBlog,
 	getAddBlogAlbum,
 	postAddBlogAlbum,
 	redirectToUpload,
