@@ -17,6 +17,7 @@ var accountsRouter = require('./routes/accounts');
 var uploadFileRouter = require('./routes/uploads');
 var contactRouter = require('./routes/contact');
 var toolsRouter = require('./routes/tools');
+var adminRouter = require('./routes/admin');
 
 var redis = require('redis');
 var redisStore = require('connect-redis')(session);
@@ -54,6 +55,7 @@ app.use('/accounts', accountsRouter);
 app.use('/upload', uploadFileRouter);
 app.use('/contact', contactRouter);
 app.use('/tools', toolsRouter);
+app.use('/admin',adminRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

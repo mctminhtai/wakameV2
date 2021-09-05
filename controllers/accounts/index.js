@@ -10,9 +10,11 @@ var {
 	postChangePwd,
 } = require('./sign-in');
 var { getSignUp, postSignUp, validateSignUpForm, verifyAccount } = require('./sign-up');
+var { signOut } = require('./sign-out');
 module.exports = {
 	getSignIn,
 	postSignIn,
+	signOut,
 	validateSignInForm,
 	getSignUp,
 	postSignUp,

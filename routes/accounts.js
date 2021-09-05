@@ -15,16 +15,14 @@ var {
 	getChangePwd,
 	validatepostChangePwd,
 	postChangePwd,
+	signOut,
 } = require('../controllers/accounts/index');
 
-router.get('/sign-in',routeAuthenticate.retrictedRoute, getSignIn);
+router.get('/sign-in', routeAuthenticate.retrictedRoute, getSignIn);
 router.post('/sign-in', routeAuthenticate.retrictedRoute, validateSignInForm, postSignIn);
 router.get('/sign-up', routeAuthenticate.retrictedRoute, getSignUp);
 router.post('/sign-up', routeAuthenticate.retrictedRoute, validateSignUpForm, postSignUp);
-router.get('/sign-out', function (req, res) {
-	req.logout();
-	res.redirect('/');
-});
+router.get('/sign-out', routeAuthenticate.privateRoute, signOut);
 router.get('/verify', routeAuthenticate.retrictedRoute, verifyAccount);
 router.get('/verify/:token', routeAuthenticate.retrictedRoute, verifyAccount);
 router.get('/reset-password', routeAuthenticate.retrictedRoute, getResetPassword);
