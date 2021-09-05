@@ -18,9 +18,14 @@ exports.blogsSearch = async function (req, res, next) {
 	let popularBlogs = [...blogs].sort((a, b) => {
 		return b.readCount - a.readCount;
 	});
-	blogs = blogs.filter((blog, index) => {
-		return multiSearch(blog.title, words, 0.5) || multiSearch(blog.description, words, 0.7);
-	});
+	console.log(words.length);
+	if (!words.length) {
+		blogs = [];
+	} else {
+		blogs = blogs.filter((blog, index) => {
+			return multiSearch(blog.title, words, 0.5) || multiSearch(blog.description, words, 0.7);
+		});
+	}
 
 	let itemPerPage = 8;
 	let pageCount = Math.ceil(blogs.length / itemPerPage);

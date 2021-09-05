@@ -15464,10 +15464,10 @@ body.offcanvas-active {
 	color: #343a40;
 }
 
-.footer {
+/* .footer {
 	font-size: 14px;
 	background: #fff;
-}
+} */
 .footer .footer-body {
 	display: -webkit-flex;
 	display: -ms-flexbox;
@@ -16118,6 +16118,7 @@ body.offcanvas-active {
 
 .content-inner {
 	padding: calc(var(--bs-gutter-x, 0.75rem) * 3);
+  margin-top: 50px;
 }
 
 @media (max-width: 767.98px) {
@@ -18685,7 +18686,7 @@ body.offcanvas-active {
 }
 
 .boxed {
-	background: #d4d6da;
+	background: #f2f2f2;
 }
 .boxed .boxed-inner {
 	/* margin: 2rem; */
