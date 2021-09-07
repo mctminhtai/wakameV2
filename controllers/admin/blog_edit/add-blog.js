@@ -1,10 +1,10 @@
 var { Blogs, Categories, Tags } = require('../../../models/index');
 var { saveFile } = require('../../upload/saveOnMongo/index');
 exports.redirectToUpload = async function (req, res, next) {
-	return res.redirect('/blog/blog-add/upload-file');
+	return res.redirect('/admin/blog-add/upload-file');
 };
 exports.getAddBlogAlbum = async function (req, res, next) {
-	return res.render('blog-add-library', { user: req.user });
+	return res.render('admin/blog/blog-add-library', { user: req.user });
 };
 exports.postAddBlogAlbum = async function (req, res, next) {
 	const imgList = req.body.imgList;
@@ -37,7 +37,7 @@ exports.getEditBlog = async function (req, res, next) {
 
 	blog.images = newImgList;
 	console.log(blog.images);
-	return res.render('blog-add', { blog, cates_list, tags_list, user: req.user });
+	return res.render('admin/blog/blog-add', { blog, cates_list, tags_list, user: req.user });
 };
 exports.postEditBlog = async function (req, res, next) {
 	let { title, blogBody, description, category, tags, thumb } = req.body;
@@ -53,7 +53,7 @@ exports.postEditBlog = async function (req, res, next) {
 	description = description.trim();
 	thumb = thumb.trim();
 	if((title==='')||(blogBody==='')||(description==='')||(thumb==='')){
-		return res.redirect('/blog/blog-add/'+blogId);
+		return res.redirect('/admin/blog-add/'+blogId);
 	}
 	const updatedBlog = await Blogs.findByIdAndUpdate(
 		blogId,
@@ -77,23 +77,4 @@ exports.postEditBlog = async function (req, res, next) {
 	}
 };
 
-// await Categories.create([
-// 	{ name: 'Web Design', description: 'thiet ke web' },
-// 	{ name: 'Branding', description: 'thiet ke thuong hieu' },
-// 	{ name: 'Graphic Design', description: 'thiet ke do hoa' },
-// 	{ name: 'Wireframing Design', description: 'thiet ke phac thao' },
-// 	{ name: 'Marketing', description: 'thi truong' },
-// ]);
-// await Tags.create([
-// 	{ name: 'Popular', description: 'pho bien' },
-// 	{ name: 'Design', description: 'pho bien' },
-// 	{ name: 'UX', description: 'pho bien' },
-// 	{ name: 'Usability', description: 'pho bien' },
-// 	{ name: 'Interview', description: 'pho bien' },
-// 	{ name: 'Jobs', description: 'pho bien' },
-// 	{ name: 'Develop', description: 'pho bien' },
-// 	{ name: 'Business', description: 'pho bien' },
-// 	{ name: 'Tech', description: 'pho bien' },
-// 	{ name: 'Consult', description: 'pho bien' },
-// 	{ name: 'Employee', description: 'pho bien' },
-// ]);
+

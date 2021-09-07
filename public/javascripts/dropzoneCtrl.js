@@ -38,7 +38,7 @@ function submitUploadedFiles() {
 		axios
 			.post(location.pathname, { imgList })
 			.then((response) => {
-                location.pathname = 'blog/blog-add/' + response.data._id;
+                location.pathname = 'admin/blog-add/' + response.data._id;
 			})
 			.catch((error) => {
 				// console.log(error.message);
