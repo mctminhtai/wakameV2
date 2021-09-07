@@ -1,0 +1,162 @@
+<%- contentFor('body') %>
+
+    <div class="breadcrumbs">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="breadcrumbs-content">
+                        <h1 class="page-title">Blog Grid Sidebar</h1>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-12">
+                    <ul class="breadcrumb-nav">
+                        <li><a href="index.html">Home</a></li>
+                        <li>Blog Grid Sidebar</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form action="" method="post">
+        <section class="section blog-single">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-8 col-md-12 col-12">
+                        <div class="single-inner">
+                            <div class="post-details">
+                                <div class="main-content-head">
+                                    <div class="meta-information">
+                                        <textarea name="title" id="post-title-input" class="post-title-input" rows="4"
+                                            placeholder="Please input title" required></textarea>
+                                        <ul class="meta-info">
+                                            <li>
+                                                <a href="javascript:void(0)">By Martin King</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">20 Jun 2023</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">Marketing</a>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                    <div class="post-thumbnils">
+                                        <img src="<%= blog.images[0] %>" alt="#">
+                                    </div>
+                                    <div class="detail-inner">
+
+                                        <div id="blogBody">Click here to edit!</div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <aside class="col-lg-4 col-md-12 col-12">
+                        <div class="sidebar">
+
+
+                            <div class="widget description-widget">
+                                <h5 class="widget-title">Description This Blog</h5>
+                                <textarea name="description" id="description-title" rows="5"
+                                    placeholder="Please input description" required></textarea>
+                            </div>
+                            
+                            
+                            <div class="widget blog-thumb-widget">
+                                <h5 class="widget-title">Select Thumb Image</h5>
+                                <% blog.images.forEach((value,index)=>{ %>
+                                    <% if (index!==0) { %>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="thumb" id="thumb<%=index %>"
+                                                value="<%= value %>" onclick="onClickHandler(event)">
+                                            <label class="form-check-label" for="thumb<%=index %>">
+                                                <img src="<%= value %>" alt="">
+                                            </label>
+                                        </div>
+                                    <% }else{ %>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="thumb" id="thumb<%=index %>"
+                                                value="<%= value %>" onclick="onClickHandler(event)" checked>
+                                            <label class="form-check-label" for="thumb<%=index %>">
+                                                <img src="<%= value %>" alt="">
+                                            </label>
+                                        </div>
+                                    <% } %>
+                                <% }) %>
+                            </div>
+
+
+                            <div class="widget categories-widget">
+                                <h5 class="widget-title">Categories</h5>
+                                <% cates_list.forEach((value,index)=>{ %>
+                                    <% if (index!==0) { %>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="category" id="category<%=index %>" value="<%= value._id %>">
+                                            <label class="form-check-label" for="category<%=index %>">
+                                                <%= value.name %>
+                                            </label>
+                                        </div>
+                                        <% }else{ %>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="category" id="category<%=index %>" value="<%= value._id %>" checked>
+                                                <label class="form-check-label" for="category<%=index %>">
+                                                    <%= value.name %>
+                                                </label>
+                                            </div>
+                                            <% } %>
+                                                <% }) %>
+                            </div>
+
+
+                            <div class="widget popular-tag-widget">
+                                <h5 class="widget-title">Popular Tags</h5>
+                                <div class="tags">
+                                    <% tags_list.forEach((value,index)=>{ %>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="<%= value._id %>"
+                                                id="defaultCheck<%= index %>" name="tags">
+                                            <label class="form-check-label" for="defaultCheck<%= index %>">
+                                                <%= value.name %>
+                                            </label>
+                                        </div>
+                                        <% }) %>
+                                </div>
+                            </div>
+                            <div class="widget">
+                                <h5 class="widget-title">Submit the blog</h5>
+                                <div class="button d-grid">
+                                    <button class="btn" type="submit">Submit Blog</button>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </form>
+<%- contentFor('stylesheet') %>
+    <link rel="stylesheet" href="stylesheets/main.css">
+    <link rel="stylesheet" href="stylesheets/blog-detail-edit-main.css">
+<%- contentFor('customScript') %>
+    <script src="javascripts/bootstrap.min.js"></script>
+    <script src="https://cdn.tiny.cloud/1/z0qez48sbqyuip9s382cicowvftudtqj0a8wo4sqr4kqbcdb/tinymce/5/tinymce.min.js"
+        referrerpolicy="origin"></script>
+    <script src="javascripts/tinymce-config.js"></script>
+    <script src="javascripts/tiny-slider.js"></script>
+    <script src="javascripts/glightbox.min.js"></script>
+    <script src="javascripts/count-up.min.js"></script>
+    <script>
+        document.querySelector('.scroll-top').setAttribute('href', location.href + '#');
+        
+        function onClickHandler(event){
+            const url = event.target.value;
+            document.querySelector('.post-thumbnils img')['src'] = url;
+        }
+    </script>
