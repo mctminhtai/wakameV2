@@ -1,0 +1,10 @@
+# [START app_yaml]
+runtime: nodejs16
+instance_class: F1
+env_variables:
+  CONNECTION_URL: "mongodb+srv://minhtai:fw46VrkINf7Jbiu5@wazaprojectdb.8sh4p.mongodb.net/wazaproject?retryWrites=true&w=majority"
+  SESSION_SECRET_KEY: "Sporting_4ova_2Anger_1wore_Flipper_snaking_balmy_2flashcard_then0_7Wildfowl"
+  TRANSPORTER_EMAIL: "wakameuit@gmail.com"
+  TRANSPORTER_EMAIL_PASSWORD: "cldeghxixwdupvgx"
+# env: flex
+# [END app_yaml]

@@ -3448,16 +3448,15 @@ ol {
 
 .single-blog-grid .blog-img a {
 	width: 100%;
-	max-height: 153px;
+	/* max-height: 153px; */
 }
-@media (min-width: 1200px) {
-	.single-blog-grid .blog-img a {
-		max-height: 186px;
+
+@media only screen and (min-width: 768px) {
+	.single-blog-grid .blog-img {
+		max-height: 170px;
 	}
-}
-@media (max-width: 767px) {
-	.single-blog-grid .blog-img a {
-		max-height: 200px;
+	.single-blog-grid .blog-img a img {
+		min-height: 170px;
 	}
 }
 
@@ -5028,7 +5027,7 @@ blockquote span {
 	position: relative;
 }
 
-.footer .inner-content ul{
+.footer .inner-content ul {
 	padding-left: 0px;
 }
 

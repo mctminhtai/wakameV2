@@ -6,6 +6,9 @@
 		"start": "node ./bin/www",
 		"dev": "nodemon ./bin/www -e ejs,js,css,html"
 	},
+	"engines": {
+		"node": "16.5"
+	},
 	"dependencies": {
 		"bcryptjs": "^2.4.3",
 		"connect-redis": "^6.0.0",

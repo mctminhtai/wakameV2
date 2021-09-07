@@ -38,9 +38,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(
 	session({
 		secret: process.env.SESSION_SECRET_KEY,
-		// store: new redisStore({
-		// 	client: redisClient,
-		// }),
+		store: new redisStore({
+			client: redisClient,
+		}),
 		saveUninitialized: false,
 		resave: false,
 		cookie: { secure: false },
