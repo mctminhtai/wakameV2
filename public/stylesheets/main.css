@@ -5025,6 +5025,7 @@ blockquote span {
 .footer {
 	background-color: #fff;
 	position: relative;
+	padding-bottom: 20px;
 }
 
 .footer .inner-content ul {
