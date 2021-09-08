@@ -7,11 +7,13 @@ var {
 	getAddBlogAlbum,
 	postAddBlogAlbum,
 	redirectToUpload,
-	getEditBlog,
-	postEditBlog,
+	getAddBlog,
+	postAddBlog,
 	blogList,
 	deleteBlog,
 	reactiveBlog,
+	getEditBlog,
+	postEditBlog,
 } = require('../controllers/admin/blog/index');
 /* GET home page. */
 router.get('/', getHomepage);
@@ -19,14 +21,16 @@ router.get('/', getHomepage);
 router.get('/blog-add', routeAuthenticate.privateRoute, redirectToUpload);
 router.get('/blog-add/upload-file', routeAuthenticate.privateRoute, getAddBlogAlbum);
 router.post('/blog-add/upload-file', routeAuthenticate.privateRoute, postAddBlogAlbum);
-router.get('/blog-add/:id', routeAuthenticate.privateRoute, getEditBlog);
-router.post('/blog-add/:id', routeAuthenticate.privateRoute, postEditBlog);
+router.get('/blog-add/:id', routeAuthenticate.privateRoute, getAddBlog);
+router.post('/blog-add/:id', routeAuthenticate.privateRoute, postAddBlog);
 router.get('/delete-blog/:id', routeAuthenticate.privateRoute, deleteBlog);
 router.get('/reactive-blog/:id', routeAuthenticate.privateRoute, reactiveBlog);
+router.get('/edit-blog/:id', routeAuthenticate.privateRoute, getEditBlog);
+router.post('/edit-blog/:id', routeAuthenticate.privateRoute, postEditBlog);
 
-router.get('/userInfo', userInfo);
-router.get('/userInfoEdit', userInfoEdit);
-router.get('/userList', userList);
-router.get('/blogList', blogList);
+router.get('/userInfo', routeAuthenticate.privateRoute, userInfo);
+router.get('/userInfoEdit', routeAuthenticate.privateRoute, userInfoEdit);
+router.get('/userList', routeAuthenticate.privateRoute, userList);
+router.get('/blogList', routeAuthenticate.privateRoute, blogList);
 
 module.exports = router;

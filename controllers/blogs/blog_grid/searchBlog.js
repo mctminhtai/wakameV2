@@ -9,7 +9,7 @@ exports.blogsSearch = async function (req, res, next) {
 		paginationUrl = paginationUrl + '&&page=';
 	}
 	let [blogs, tags, categories] = await Promise.all([
-		Blogs.find({}, 'title description category dateCreated readCount thumbImg')
+		Blogs.find({status:true}, 'title description category dateCreated readCount thumbImg')
 			.populate({ path: 'category', select: 'name' })
 			.sort({ dateCreated: 'desc' }),
 		Tags.find({}),

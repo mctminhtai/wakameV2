@@ -343,7 +343,7 @@ $('#back-to-top').fadeOut();
 -----------------------------------------------------------------------*/
 document.addEventListener('DOMContentLoaded', (event) => {
   resizePlugins()
-  loaderInit()
+  // loaderInit()
 });
 
 /*---------------------------------------------------------------------

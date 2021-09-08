@@ -1,27 +1,5 @@
 var { Blogs, Categories, Tags } = require('../../../models/index');
-var { saveFile } = require('../../upload/saveOnMongo/index');
-exports.redirectToUpload = async function (req, res, next) {
-	return res.redirect('/admin/blog-add/upload-file');
-};
-exports.getAddBlogAlbum = async function (req, res, next) {
-	return res.render('admin/blog/blog-add-library', { user: req.user });
-};
-exports.postAddBlogAlbum = async function (req, res, next) {
-	const imgList = req.body.imgList;
-	console.log(imgList);
-	if (imgList.length > 0) {
-		let blog = await Blogs.create({
-			title: 'temporary',
-			description: 'temporary',
-			body: 'this is empty blog',
-			userId: '612cfc4e05583a4abc32dc6d',
-			images: imgList,
-		});
-		return res.status(201).json(blog);
-	}
-	return res.status(400).json({ message: 'empty imgList' });
-};
-exports.getAddBlog = async function (req, res, next) {
+exports.getEditBlog = async function (req, res, next) {
 	const blogId = req.params.id;
 	const [cates_list, tags_list, blog] = await Promise.all([
 		Categories.find({}),
@@ -37,9 +15,10 @@ exports.getAddBlog = async function (req, res, next) {
 
 	blog.images = newImgList;
 	console.log(blog.images);
-	return res.render('admin/blog/blog-add', { blog, cates_list, tags_list, user: req.user });
+	return res.render('admin/blog/blog-edit', { blog, cates_list, tags_list, user: req.user });
 };
-exports.postAddBlog = async function (req, res, next) {
+
+exports.postEditBlog = async function (req, res, next) {
 	let { title, blogBody, description, category, tags, thumb } = req.body;
 	const blogId = req.params.id;
 	if (Array.isArray(category)) {
@@ -52,8 +31,8 @@ exports.postAddBlog = async function (req, res, next) {
 	blogBody = blogBody.trim();
 	description = description.trim();
 	thumb = thumb.trim();
-	if((title==='')||(blogBody==='')||(description==='')||(thumb==='')){
-		return res.redirect('/admin/blog-add/'+blogId);
+	if (title === '' || blogBody === '' || description === '' || thumb === '') {
+		return res.redirect('/admin/edit-blog/' + blogId);
 	}
 	const updatedBlog = await Blogs.findByIdAndUpdate(
 		blogId,
@@ -65,16 +44,14 @@ exports.postAddBlog = async function (req, res, next) {
 			category,
 			tags,
 			status: true,
-			thumbImg:thumb,
+			thumbImg: thumb,
 		},
 		{ new: true }
 	);
-	
-	if(updatedBlog){
+
+	if (updatedBlog) {
 		return res.redirect(`/blog/blog-detail/${updatedBlog._id}`);
-	}else{
+	} else {
 		return res.send('Has error');
 	}
 };
-
-

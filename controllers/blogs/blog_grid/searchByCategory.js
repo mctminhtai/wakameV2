@@ -12,7 +12,7 @@ exports.blogsSearchByCategory = async function (req, res, next) {
 
 	let [searchBlogs, popularBlogs, tags, categories] = await Promise.all([
         Categories.findById(categoryId).populate({path:'blogs',populate:{path:'category'}}),
-		Blogs.find({}).populate({ path: 'category', select: 'name' }).sort({ readCount: 'desc' }),
+		Blogs.find({status:true}).populate({ path: 'category', select: 'name' }).sort({ readCount: 'desc' }),
 		Tags.find({}),
 		Categories.find({}),
 	]);
