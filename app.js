@@ -36,9 +36,9 @@ const sess = {
 		maxAge: 259200000,
 	},
 };
-if (app.get('env') === 'production') {
-	sess.cookie.secure = true;
-}
+// if (app.get('env') === 'production') {
+// 	sess.cookie.secure = true;
+// }
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
