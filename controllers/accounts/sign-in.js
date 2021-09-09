@@ -54,11 +54,9 @@ exports.postSignIn = function (req, res, next) {
 		}
 		req.logIn(user, (err) => {
 			if (err) return next(err);
-			console.log(req.body.rememberMe);
 			if (!req.body.rememberMe) {
 				req.session.cookie.maxAge = 1800000;
 			}
-			console.log(req.session);
 			return res.redirect('/');
 		});
 	})(req, res, next);

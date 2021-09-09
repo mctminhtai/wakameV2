@@ -24,7 +24,21 @@ var redisStore = require('connect-redis')(session);
 var redisClient = redis.createClient(process.env.REDIS_URL);
 
 var app = express();
-
+const sess = {
+	secret: process.env.SESSION_SECRET_KEY,
+	store: new redisStore({
+		client: redisClient,
+	}),
+	saveUninitialized: false,
+	resave: false,
+	cookie: {
+		secure: false,
+		maxAge: 259200000,
+	},
+};
+if (app.get('env') === 'production') {
+	sess.cookie.secure = true;
+}
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -35,17 +49,7 @@ app.use(express.json({ limit: '150mb' }));
 app.use(express.urlencoded({ extended: true, limit: '150mb' }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(
-	session({
-		secret: process.env.SESSION_SECRET_KEY,
-		store: new redisStore({
-			client: redisClient,
-		}),
-		saveUninitialized: false,
-		resave: false,
-		cookie: { secure: false },
-	})
-);
+app.use(session(sess));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -55,7 +59,7 @@ app.use('/accounts', accountsRouter);
 app.use('/upload', uploadFileRouter);
 app.use('/contact', contactRouter);
 app.use('/tools', toolsRouter);
-app.use('/admin',adminRouter);
+app.use('/admin', adminRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -73,17 +77,5 @@ app.use(function (err, req, res) {
 	res.render('error');
 });
 connection();
-// mongoose.connect(process.env.CONNECTION_URL, {
-// 	useNewUrlParser: true,
-// 	useUnifiedTopology: true,
-// 	useFindAndModify: false,
-// 	useCreateIndex: true,
-// });
-// const db = mongoose.connection;
-// db.on('error', console.error.bind(console, 'connection error:'));
-// db.once('open', function () {
-// 	// we're connected!
-// 	console.log('we are connected!');
-// });
 
 module.exports = app;

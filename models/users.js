@@ -7,6 +7,7 @@ const userSchema = mongoose.Schema({
 	dateCreated: { type: Date, default: new Date() },
 	dateUpdated: { type: Date, default: new Date() },
 	status: { type: Boolean, default: false },
+	phoneNumber: { type: String, default: '' },
 });
 
 exports.Users = mongoose.model('Users', userSchema);

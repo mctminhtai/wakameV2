@@ -2,7 +2,7 @@ var express = require('express');
 var routeAuthenticate = require('../utils/authenticate');
 var router = express.Router();
 var { getHomepage } = require('../controllers/admin/dashboard/index');
-var { userInfo, userInfoEdit, userList } = require('../controllers/admin/user/index');
+var { userInfo, userInfoEdit, userList, disableUserToggle } = require('../controllers/admin/user/index');
 var {
 	getAddBlogAlbum,
 	postAddBlogAlbum,
@@ -28,9 +28,10 @@ router.get('/reactive-blog/:id', routeAuthenticate.privateRoute, reactiveBlog);
 router.get('/edit-blog/:id', routeAuthenticate.privateRoute, getEditBlog);
 router.post('/edit-blog/:id', routeAuthenticate.privateRoute, postEditBlog);
 
-router.get('/userInfo', routeAuthenticate.privateRoute, userInfo);
+router.get('/userInfo/:id', routeAuthenticate.privateRoute, userInfo);
 router.get('/userInfoEdit', routeAuthenticate.privateRoute, userInfoEdit);
 router.get('/userList', routeAuthenticate.privateRoute, userList);
+router.get('/userList/delete-user/:id', routeAuthenticate.privateRoute, disableUserToggle);
 router.get('/blogList', routeAuthenticate.privateRoute, blogList);
 
 module.exports = router;

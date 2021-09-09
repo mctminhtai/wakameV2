@@ -47,7 +47,7 @@
                                                         alt="profile-image">
                                                 </div>
                                                 <div class="d-flex flex-wrap align-items-center mb-3 mb-sm-0">
-                                                    <h4 class="me-2 h4">Austin Robertson</h4>
+                                                    <h4 class="me-2 h4"><%= user.fullName %></h4>
                                                     <span> - Web Developer</span>
                                                 </div>
                                             </div>
@@ -55,15 +55,15 @@
                                                 id="profile-pills-tab" role="tablist">
                                                 <li class="nav-item">
                                                     <a class="nav-link active show" data-bs-toggle="tab" href="#profile-feed"
-                                                        role="tab" aria-selected="false">Feed</a>
+                                                        role="tab" aria-selected="false">Bài đăng</a>
                                                 </li>
                                                 <li class="nav-item">
                                                     <a class="nav-link" data-bs-toggle="tab" href="#profile-activity" role="tab"
-                                                        aria-selected="false">Activity</a>
+                                                        aria-selected="false">Hoạt động</a>
                                                 </li>
                                                 <li class="nav-item">
                                                     <a class="nav-link" data-bs-toggle="tab" href="#profile-friends" role="tab"
-                                                        aria-selected="false">Friends</a>
+                                                        aria-selected="false">Nhóm</a>
                                                 </li>
                                                 <li class="nav-item">
                                                     <a class="nav-link" data-bs-toggle="tab" href="#profile-profile" role="tab"
@@ -548,14 +548,9 @@
                                                             class="rounded-pill avatar-130 img-fluid">
                                                     </div>
                                                     <div class="mt-3">
-                                                        <h3 class="d-inline-block">Austin Robertson</h3>
+                                                        <h3 class="d-inline-block"><%= user.fullName %></h3>
                                                         <p class="d-inline-block pl-3"> - Web developer</p>
-                                                        <p class="mb-0">Lorem Ipsum is simply dummy text of the printing and
-                                                            typesetting
-                                                            industry. Lorem Ipsum has been the industry's standard dummy text ever
-                                                            since
-                                                            the
-                                                            1500s</p>
+                                                        <p class="mb-0">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam accusantium veritatis facere. Excepturi recusandae corporis qui voluptatibus fuga architecto et?</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -563,7 +558,7 @@
                                         <div class="card">
                                             <div class="card-header">
                                                 <div class="header-title">
-                                                    <h4 class="card-title">About User</h4>
+                                                    <h4 class="card-title">Thông tin tài khoản</h4>
                                                 </div>
                                             </div>
                                             <div class="card-body">
@@ -573,16 +568,16 @@
                                                         cake wafer.</p>
                                                 </div>
                                                 <div class="mt-2">
-                                                    <h6 class="mb-1">Joined:</h6>
-                                                    <p>Feb 15, 2021</p>
+                                                    <h6 class="mb-1">Ngày tham gia:</h6>
+                                                    <p><%= user.dateCreated.getDate() + '/' + user.dateCreated.getMonth() + '/' + user.dateCreated.getFullYear() %></p>
                                                 </div>
-                                                <div class="mt-2">
+                                                <!-- <div class="mt-2">
                                                     <h6 class="mb-1">Lives:</h6>
                                                     <p>United States of America</p>
-                                                </div>
+                                                </div> -->
                                                 <div class="mt-2">
                                                     <h6 class="mb-1">Email:</h6>
-                                                    <p><a href="#" class="text-body"> austin@gmail.com</a></p>
+                                                    <p><a href="#" class="text-body"> <%= user.email %> </a></p>
                                                 </div>
                                                 <div class="mt-2">
                                                     <h6 class="mb-1">Url:</h6>
@@ -590,7 +585,7 @@
                                                 </div>
                                                 <div class="mt-2">
                                                     <h6 class="mb-1">Contact:</h6>
-                                                    <p><a href="#" class="text-body">(001) 4544 565 456</a></p>
+                                                    <p><a href="#" class="text-body"><%= user.phoneNumber %></a></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -641,7 +636,7 @@
                                         <div>Location: <span class="ms-3">USA</span></div>
                                     </div>
                                 </div>
-                                <div class="card">
+                                <!-- <div class="card">
                                     <div class="card-header">
                                         <div class="header-title">
                                             <h4 class="card-title">Stories</h4>
@@ -675,11 +670,11 @@
                                             </li>
                                         </ul>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="card">
                                     <div class="card-header">
                                         <div class="header-title">
-                                            <h4 class="card-title">Twitter Feeds</h4>
+                                            <h4 class="card-title">Bình luận</h4>
                                         </div>
                                     </div>
                                     <div class="card-body">
@@ -764,7 +759,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card">
+                                <!-- <div class="card">
                                     <div class="card-header d-flex align-items-center justify-content-between">
                                         <div class="header-title">
                                             <h4 class="card-title">Gallery</h4>
@@ -811,7 +806,7 @@
                                             </a>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <!-- <div class="card">
                                     <div class="card-header">
