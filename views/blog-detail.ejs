@@ -53,6 +53,19 @@
                             <div class="detail-inner">
                                 <%- blog.body %>
                             </div>
+                            <div class="row mt-5 blog-album">
+                                <h3>Album ảnh</h3>
+                                <% blog.images.forEach((value,index)=>{ %>                                   
+                                    
+                                    <div class="col-4 mt-3 overflow-hidden">
+                                        <a href="<%= value %>" class="glightbox"
+                                            data-glightbox="title: <%= 'Ảnh '+ (index+1) %>; description: <%= 'Ảnh ' + (index+1) %>; descPosition: left; type: image; effect: fade; width: 900px; height: auto;zoomable: true; draggable: true;">
+                                            <img src="<%= value %>" alt="image">
+                                        </a>
+                                    </div>
+
+                                <% }) %>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -181,11 +194,18 @@
 </div>
 <%- contentFor('stylesheet') %>
     <link rel="stylesheet" href="stylesheets/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
 <%- contentFor('customScript') %>
     <script src="javascripts/bootstrap.min.js"></script>
     <script src="javascripts/tiny-slider.js"></script>
-    <script src="javascripts/glightbox.min.js"></script>
+    <!-- <script src="javascripts/glightbox.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
     <script src="javascripts/count-up.min.js"></script>
     <script>
         document.querySelector('.scroll-top').setAttribute('href', location.href + '#');
+    </script>
+    <script>
+        var lightboxDescription = GLightbox({
+            selector: '.glightbox',
+        });
     </script>

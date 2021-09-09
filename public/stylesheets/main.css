@@ -2180,7 +2180,7 @@ ol {
 	z-index: 1;
 }
 
-.hero-area .app-image .hero-slider img{
+.hero-area .app-image .hero-slider img {
 	border-radius: 36px;
 }
 
@@ -3413,6 +3413,7 @@ ol {
 /*======================================
     Blog CSS
 ========================================*/
+
 .blog-section {
 	background-color: #fff;
 }
@@ -3676,6 +3677,29 @@ ol {
 	margin-bottom: 30px;
 	font-weight: 600;
 	line-height: 28px;
+}
+
+.gcontainer .gslide .ginner-container img {
+	border-radius: 0px 8px 8px 0px;
+}
+
+.gcontainer .gslide .ginner-container .gslide-description {
+	border-radius: 8px 0px 0px 8px;
+}
+
+.blog-single .blog-album img {
+	height: 150px;
+}
+
+@media screen and (max-width: 767px) {
+	.blog-single .blog-album img {
+		height: 90px;
+	}
+}
+@media screen and (max-width: 375px) {
+	.blog-single .blog-album img {
+		height: 66px;
+	}
 }
 
 blockquote {

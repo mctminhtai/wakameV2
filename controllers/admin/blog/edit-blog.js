@@ -14,7 +14,7 @@ exports.getEditBlog = async function (req, res, next) {
 	});
 
 	blog.images = newImgList;
-	console.log(blog.images);
+
 	return res.render('admin/blog/blog-edit', { blog, cates_list, tags_list, user: req.user });
 };
 

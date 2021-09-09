@@ -12,8 +12,17 @@ exports.getBlogSingle = async function (req, res, next) {
 			.populate({ path: 'userId', select: 'fullName' })
 			.populate({ path: 'comments', populate: { path: 'user' } }),
 	]);
-	console.log(blog);
+
 	await Blogs.findByIdAndUpdate(blogId, { readCount: blog.readCount + 1 });
+
+	//chuyen tu id qua URL cho tung buc anh
+	const newImgList = blog.images.map((id, index) => {
+		return '/upload/photo/' + id;
+	});
+
+	blog.images = newImgList;
+
+	// console.log(blog.images);
 	return res.render('blog-detail', {
 		blog,
 		popularBlogs,
