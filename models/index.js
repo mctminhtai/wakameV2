@@ -1,12 +1,14 @@
-var { Users } = require('./users');
-var { Blogs } = require('./blogs');
-var { Categories } = require('./categories');
-var { Tags } = require('./tags');
-var { Images } = require('./images');
+const { Users } = require('./users');
+const { Blogs } = require('./blogs');
+const { Categories } = require('./categories');
+const { Tags } = require('./tags');
+const { Images } = require('./images');
+const { Comments } = require('./comments');
 module.exports = {
 	Users,
 	Blogs,
 	Categories,
 	Tags,
 	Images,
+	Comments,
 };

@@ -101,6 +101,9 @@ exports.postResetEmail = function (req, res, next) {
 		if (err) {
 			throw err;
 		}
+		if (!user) {
+			return res.render('reset-password', { message: 'Please check your input email', user: req.user });
+		}
 		var randToken = randomString.password({
 			length: 100,
 			string: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
@@ -143,6 +146,7 @@ exports.getChangePwd = function (req, res, next) {
 			title: 'OOPS!',
 			message: 'token is not match',
 			url: '/accounts/reset-password',
+			user: req.user,
 		});
 	}
 	if (Date.now() > req.session.verifyInfo.expires) {
@@ -151,6 +155,7 @@ exports.getChangePwd = function (req, res, next) {
 			title: 'OOPS!',
 			message: 'token is expired',
 			url: '/accounts/reset-password',
+			user: req.user,
 		});
 	}
 	return res.render('change-password', { message: '', user: req.user });
@@ -161,11 +166,7 @@ exports.postChangePwd = function (req, res, next) {
 		return res.redirect('/');
 	}
 	if (req.params.token !== req.session.verifyInfo.token) {
-		return res.render('notify', {
-			title: 'OOPS!',
-			message: 'token is not match',
-			url: '/accounts/reset-password',
-		});
+		return res.render('change-password', { message: 'sai token roi', user: req.user });
 	}
 	// if (Date.now() > req.session.verifyInfo.expires) {
 	// 	return res.render('notify', {
@@ -183,10 +184,9 @@ exports.postChangePwd = function (req, res, next) {
 				throw err;
 			}
 			delete req.session.verifyInfo;
-			return res.render('notify', {
-				title: 'Congratulations!',
-				message: 'Your password has been reset',
-				url: '/accounts/sign-in',
+			return res.render('change-password', {
+				message: 'password của bạn đã được đặt lại thành công',
+				user: req.user,
 			});
 		});
 	});

@@ -17,5 +17,12 @@ const blogSchema = mongoose.Schema({
 	images: [String],
 	thumbImg: { type: String },
 });
+blogSchema.virtual('comments', {
+	ref: 'Comments',
+	localField: '_id',
+	foreignField: 'blog',
+});
 
+blogSchema.set('toObject', { virtuals: true });
+blogSchema.set('toJSON', { virtuals: true });
 exports.Blogs = mongoose.model('Blogs', blogSchema);
