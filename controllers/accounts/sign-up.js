@@ -132,6 +132,7 @@ exports.verifyAccount = function (req, res, next) {
 				title: 'Congratulations!',
 				message: 'Your account is activated',
 				url: '/accounts/sign-in',
+				user: req.user
 			});
 		});
 	}
