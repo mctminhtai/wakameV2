@@ -65,9 +65,13 @@
                                 <li class="nav-item">
                                     <a href="/contact" aria-label="Toggle navigation">Liên Hệ</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="/tools" aria-label="Toggle navigation">Công Cụ</a>
-                                </li>
+                                <% if(user?.role.name === 'admin'){ %>
+
+                                    <li class="nav-item">
+                                        <a href="/tools" aria-label="Toggle navigation">Công Cụ</a>
+                                    </li>
+
+                                <% } %>
                                 <li class="nav-item d-md-none">
                                     <a href="/accounts/sign-in" aria-label="Toggle navigation">Đăng Nhập</a>
                                 </li>

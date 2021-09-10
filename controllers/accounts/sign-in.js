@@ -18,6 +18,7 @@ passport.use(
 		},
 		function (req, username, password, done) {
 			Users.findOne({ email: username }, function (err, user) {
+				console.log(user);
 				if (err) {
 					return done(err);
 				}
@@ -36,7 +37,7 @@ passport.use(
 					}
 					return done(null, user);
 				});
-			});
+			}).populate({ path: 'role' });
 		}
 	)
 );

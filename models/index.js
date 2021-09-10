@@ -4,6 +4,7 @@ const { Categories } = require('./categories');
 const { Tags } = require('./tags');
 const { Images } = require('./images');
 const { Comments } = require('./comments');
+const { Roles } = require('./roles');
 module.exports = {
 	Users,
 	Blogs,
@@ -11,4 +12,5 @@ module.exports = {
 	Tags,
 	Images,
 	Comments,
+	Roles,
 };

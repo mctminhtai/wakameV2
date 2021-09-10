@@ -4,5 +4,6 @@ exports.index = async function (req, res, next) {
 		.populate({ path: 'category', select: 'name' })
 		.sort({ dateCreated: 'desc' });
 	lastedBlogs = lastedBlogs.slice(0, 3);
+	console.log(req.user);
 	res.render('index', { user: req.user, blogs: lastedBlogs });
 };

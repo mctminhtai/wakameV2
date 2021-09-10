@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+const { Roles } = require('./roles');
 
 const userSchema = mongoose.Schema({
 	email: { type: String, required: true },
@@ -8,6 +9,7 @@ const userSchema = mongoose.Schema({
 	dateUpdated: { type: Date, default: new Date() },
 	status: { type: Boolean, default: false },
 	phoneNumber: { type: String, default: '' },
+	role: { type: mongoose.Schema.Types.ObjectId, default: '613acb1bdf840239f5078391',ref: Roles},
 });
 
 exports.Users = mongoose.model('Users', userSchema);

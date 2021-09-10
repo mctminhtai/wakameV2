@@ -14,7 +14,7 @@ let myDropzone = new Dropzone('div#dropzone', {
 	autoProcessQueue: true, //auto upload to server or upload when click some button
 	resizeQuality: 0.5,
 	resizeMethod: 'contain',
-	maxFiles: null,
+	maxFiles: 5, //Can be used to limit the maximum number of files that will be handled by this Dropzone
 	acceptedFiles: 'image/*', //image/*,application/pdf,.psd
 	previewsContainer: null,
 	addRemoveLinks: true,

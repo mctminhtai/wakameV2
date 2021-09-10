@@ -52,7 +52,7 @@ passport.serializeUser(function (user, done) {
 passport.deserializeUser(function (id, done) {
 	Users.findById(id, function (err, user) {
 		done(err, user);
-	});
+	}).populate({ path: 'role', select: 'name' });
 });
 exports.getSignUp = function (req, res, next) {
 	res.render('sign-up', { message: '', user: req.user });
