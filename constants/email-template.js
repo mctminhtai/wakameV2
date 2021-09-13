@@ -2,8 +2,7 @@ exports.verifyAccountTemplate = function (verifyUrl) {
 	var url = `
 <div style="font-family:-apple-system,BlinkMacSystemFont,sans-serif;color:#434c5e;font-weight:300" bgcolor="#ffffff">
   <span
-    style="display:none!important;font-size:1px;line-height:1px;max-height:0;max-width:0;opacity:0;overflow:hidden">Your
-    verification code is 999083</span>
+    style="display:none!important;font-size:1px;line-height:1px;max-height:0;max-width:0;opacity:0;overflow:hidden">This is your verify email on WAKAME website. </span>
   <table width="100%" cellpadding="0" cellspacing="0" style="width:100%;height:100%" bgcolor="#ffffff">
     <tbody>
       <tr>
