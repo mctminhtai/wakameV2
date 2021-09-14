@@ -19,16 +19,16 @@ var contactRouter = require('./routes/contact');
 var toolsRouter = require('./routes/tools');
 var adminRouter = require('./routes/admin');
 
-var redis = require('redis');
-var redisStore = require('connect-redis')(session);
-var redisClient = redis.createClient(process.env.REDIS_URL);
+// var redis = require('redis');
+// var redisStore = require('connect-redis')(session);
+// var redisClient = redis.createClient(process.env.REDIS_URL);
 
 var app = express();
 const sess = {
 	secret: process.env.SESSION_SECRET_KEY,
-	store: new redisStore({
-		client: redisClient,
-	}),
+	// store: new redisStore({
+	// 	client: redisClient,
+	// }),
 	saveUninitialized: false,
 	resave: false,
 	cookie: {
