@@ -18,6 +18,7 @@ var uploadFileRouter = require('./routes/uploads');
 var contactRouter = require('./routes/contact');
 var toolsRouter = require('./routes/tools');
 var adminRouter = require('./routes/admin');
+var mapRouter = require('./routes/arcgismap');
 
 // var redis = require('redis');
 // var redisStore = require('connect-redis')(session);
@@ -60,6 +61,7 @@ app.use('/upload', uploadFileRouter);
 app.use('/contact', contactRouter);
 app.use('/tools', toolsRouter);
 app.use('/admin', adminRouter);
+app.use('/map', mapRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

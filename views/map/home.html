@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoSys3D</title>
+    <style>
+        html,
+        body,
+        #viewDiv {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.21/esri/themes/light/main.css">
+    <script src="https://js.arcgis.com/4.21/"></script>
+    <script>
+        require([
+            "esri/config",
+            "esri/Map",
+            "esri/views/MapView",
+            // "esri/widgets/BasemapToggle",
+            // "esri/widgets/BasemapGallery",
+            // "esri/widgets/Search",
+            // "esri/Graphic",
+            // "esri/layers/GraphicsLayer",
+            "esri/layers/FeatureLayer",
+            "esri/widgets/Editor",
+        ], function (
+            esriConfig, Map, MapView,
+            // BasemapToggle, BasemapGallery,
+            // Graphic, GraphicsLayer, 
+            FeatureLayer,
+            Editor,
+            // Search
+        ) {
+            esriConfig.apiKey = "AAPK053b7280fd8a4a8d86afce794774a144mEoFOI1WigFCLv9LOu4Xi4V7xi6cBAk3G3KGq0tRcyQifZySUCEQXljAy9Mx9St9";
+
+            const map = new Map({
+                // basemap: "arcgis-navigation" // Basemap layer service
+                basemap: "arcgis-navigation" // Basemap layer service
+            });
+            const view = new MapView({
+                map: map,
+                center: [106.8, 10.88], // Longitude, latitude
+                zoom: 14, // Zoom level
+                container: "viewDiv" // Div element
+            });
+
+            // Them nut toggle de lua chon basemap
+            // const basemapToggle = new BasemapToggle({
+            //     view: view,
+            //     nextBasemap: "arcgis-imagery"
+            // });
+            // view.ui.add(basemapToggle, "bottom-right");
+
+
+            // Them galary de lua chon basemap
+            // const basemapGallery = new BasemapGallery({
+            //     view: view,
+            //     source: {
+            //         query: {
+            //             title: '"World Basemaps for Developers" AND owner:esri'
+            //         }
+            //     }
+            // });
+
+            // view.ui.add(basemapGallery, "top-right");
+
+
+            // Ve them mot diem
+
+            // const graphicsLayer = new GraphicsLayer();
+            // map.add(graphicsLayer);
+            // const point = { //Create a point
+            //     type: "point",
+            //     longitude: -118.80657463861,
+            //     latitude: 34.0005930608889
+            // };
+            // const simpleMarkerSymbol = {
+            //     type: "simple-marker",
+            //     color: [226, 119, 40],  // Orange
+            //     outline: {
+            //         color: [255, 255, 255], // White
+            //         width: 1
+            //     }
+            // };
+            // const popupTemplate = {
+            //     title: "{Name}",
+            //     content: "{Description}"
+            // }
+            // const attributes = {
+            //     Name: "Graphic",
+            //     Description: "I am a point"
+            // }
+            // const pointGraphic = new Graphic({
+            //     geometry: point,
+            //     symbol: simpleMarkerSymbol,
+            //     attributes: attributes,
+            //     popupTemplate: popupTemplate
+            // });
+            // graphicsLayer.add(pointGraphic);
+
+            //Add feature layer (points)
+
+            // const trailheadsRenderer = {
+            //     "type": "simple",
+            //     "symbol": {
+            //         "type": "picture-marker",
+            //         "url": "http://static.arcgis.com/images/Symbols/NPS/npsPictograph_0231b.png",
+            //         "width": "18px",
+            //         "height": "18px"
+            //     }
+            // };
+            // const trailheadsLabels = {
+            //     symbol: {
+            //         type: "text",
+            //         color: "#FFFFFF",
+            //         haloColor: "#5E8D74",
+            //         haloSize: "2px",
+            //         font: {
+            //             size: "12px",
+            //             family: "Noto Sans",
+            //             style: "italic",
+            //             weight: "normal"
+            //         }
+            //     },
+
+            //     labelPlacement: "above-center",
+            //     labelExpressionInfo: {
+            //         expression: "$feature.TRL_NAME"
+            //     }
+            // };
+            // const popupTrailheads = {
+            //     "title": "Trailhead",
+            //     "content": "<b>Trail:</b> {TRL_NAME}<br><b>City:</b> {CITY_JUR}<br><b>Cross Street:</b> {X_STREET}<br><b>Parking:</b> {PARKING}<br><b>Elevation:</b> {ELEV_FT} ft"
+            // }
+            const trailheadsLayer = new FeatureLayer({
+                url: "https://services.arcgis.com/zeMcOX81xyYyNdfS/arcgis/rest/services/app/FeatureServer/0",
+                // renderer: trailheadsRenderer,
+                // labelingInfo: [trailheadsLabels],
+                // popupTemplate: popupTrailheads
+            });
+            map.add(trailheadsLayer);
+
+
+            // Add Editor
+            const editor = new Editor({
+                view: view
+            });
+            // Add widget to the view
+            view.ui.add(editor, "bottom-right");
+
+            // Add Search
+            // const search = new Search({  //Add Search widget
+            //     view: view
+            // });
+            // view.ui.add(search, "top-right");
+        });
+    </script>
+</head>
+
+<body>
+    <div id="viewDiv"></div>
+</body>
+
+</html>
