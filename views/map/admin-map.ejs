@@ -1,0 +1,147 @@
+<%- contentFor('body') %>
+    <div class="breadcrumbs">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="breadcrumbs-content">
+                        <h1 class="page-title">Blog Grid Sidebar</h1>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-12">
+                    <ul class="breadcrumb-nav">
+                        <li><a href="/">Home</a></li>
+                        <li>Blog Grid Sidebar</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="viewDiv"></div>
+
+
+
+<%- contentFor('stylesheet') %>
+    <link rel="stylesheet" href="stylesheets/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+    <link rel="stylesheet" href="https://js.arcgis.com/4.21/esri/themes/light/main.css">
+    <link rel="stylesheet" href="stylesheets/map.css">
+
+<%- contentFor('customScript') %>
+    <script src="https://js.arcgis.com/4.21/"></script>
+    <script>
+        require([
+            "esri/config",
+            "esri/Map",
+            "esri/views/MapView",
+            "esri/widgets/BasemapToggle",
+            "esri/layers/FeatureLayer",
+            "esri/widgets/Editor",
+            "esri/widgets/LayerList",
+        ], function (
+            esriConfig, Map, MapView,
+            BasemapToggle,
+            FeatureLayer,
+            Editor,
+            LayerList,
+
+        ) {
+            esriConfig.apiKey = "AAPK053b7280fd8a4a8d86afce794774a144mEoFOI1WigFCLv9LOu4Xi4V7xi6cBAk3G3KGq0tRcyQifZySUCEQXljAy9Mx9St9";
+
+            const map = new Map({
+                basemap: "arcgis-navigation" // Basemap layer service
+            });
+            const view = new MapView({
+                map: map,
+                center: [106.8, 10.88], // Longitude, latitude
+                zoom: 14, // Zoom level
+                container: "viewDiv" // Div element
+            });
+            // them layer list
+            let layerList = new LayerList({
+                view: view
+            });
+            view.ui.add(layerList, {
+                position: "top-right"
+            });
+            // Them nut toggle de lua chon basemap
+            const basemapToggle = new BasemapToggle({
+                view: view,
+                nextBasemap: "arcgis-imagery"
+            });
+            view.ui.add(basemapToggle, "bottom-left");
+
+            
+
+            //Add feature layer (points)
+
+            const trailheadsRenderer = {
+                "type": "simple",
+                "symbol": {
+                    "type": "picture-marker",
+                    "url": "http://static.arcgis.com/images/Symbols/NPS/npsPictograph_0231b.png",
+                    "width": "18px",
+                    "height": "18px"
+                }
+            };
+            const trailheadsLabels = {
+                symbol: {
+                    type: "text",
+                    color: "#FFFFFF",
+                    haloColor: "#5E8D74",
+                    haloSize: "2px",
+                    font: {
+                        size: "12px",
+                        family: "Noto Sans",
+                        style: "italic",
+                        weight: "normal"
+                    }
+                },
+
+                labelPlacement: "above-center",
+                labelExpressionInfo: {
+                    expression: "$feature.Name"
+                }
+            };
+            const popupTrailheads = {
+                "title": "{Name}",
+                "content": "<b>Trail:</b> {Name}<br><b>City:</b> {Detail}<br><b>Cross Street:</b> {Address}<br><b>Parking:</b> {Phone}<br>"
+            }
+            const trailheadsLayer = new FeatureLayer({
+                url: "https://services.arcgis.com/zeMcOX81xyYyNdfS/arcgis/rest/services/quanan/FeatureServer/0",
+                renderer: trailheadsRenderer,
+                labelingInfo: [trailheadsLabels],
+                popupTemplate: popupTrailheads
+            });
+            map.add(trailheadsLayer);
+
+
+
+            const trailheads2Renderer = {
+                "type": "simple",
+                "symbol": {
+                    "type": "picture-marker",
+                    "url": "http://cdn.onlinewebfonts.com/svg/img_454307.png",
+                    "width": "18px",
+                    "height": "18px"
+                }
+            };
+            const trailheadsLayer2 = new FeatureLayer({
+                url: "https://services.arcgis.com/zeMcOX81xyYyNdfS/arcgis/rest/services/suaxe/FeatureServer/0",
+                renderer: trailheads2Renderer,
+                labelingInfo: [trailheadsLabels],
+                popupTemplate: popupTrailheads
+            });
+            map.add(trailheadsLayer2);
+
+
+
+            // Add Editor
+            const editor = new Editor({
+                view: view
+            });
+            // Add widget to the view
+            view.ui.add(editor, "bottom-right");
+
+
+        });
+    </script>
